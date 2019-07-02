@@ -2,43 +2,45 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-  email:{
+  email: {
     type: String,
-    unique: true
+    required: true,
+    unique: true,
+    maxlength: 255
   },
-  password:{
+  password: {
     type: String,
     required: true
   },
-  nickname:{
+  nickname: {
     type: String,
-    required: true,
-    unique: true
+    // required: true,
+    //unique: true
   },
-  name:{
+  name: {
     type: String
   },
-  lastname:{
+  lastname: {
     type: String
   },
-  rating:{
+  rating: {
     type: Number,
     default: 0
   },
   ratingPos: {
     type: Number
   },
-  views:{
+  views: {
     type: Number,
     default: 0
   },
-  avatar:{
+  avatar: {
     type: String
   },
-  city:{
+  city: {
     type: String
   },
-  region:{
+  region: {
     type: String,
     enum: [
       "Винницкая область",
