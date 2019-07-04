@@ -52,7 +52,7 @@ module.exports.register = async function (req, res) {
 
 
       res.status(201).json({
-        userId: candidate._id,
+        userId: user._id,
         token: `Bearer ${token}`
       })
     }

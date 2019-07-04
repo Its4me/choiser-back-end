@@ -6,6 +6,10 @@ const photoSchema = new Schema({
     type: Schema.Types.ObjectId,
     required: true
   },
+  key: {
+    type: String,
+    required: true
+  },
   photo: {
     type: String,
     required: true
