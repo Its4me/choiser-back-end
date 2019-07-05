@@ -69,6 +69,10 @@ const userSchema = new Schema({
       "Черновицкая область"
     ]
   },
+  selectable: {
+    type: Boolean,
+    default: false
+  }
 })
 
 module.exports = mongoose.model('users', userSchema)

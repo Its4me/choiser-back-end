@@ -2,6 +2,7 @@ const errorHandler = require('../utils/errorHandler')
 const Photo = require('../modeles/Photo')
 const aws = require('aws-sdk')
 const keys = require('../config/keys')
+const User = require('../modeles/User')
 
 const s3 = new aws.S3({
   secretAccessKey: keys.secretKey,
@@ -23,13 +24,17 @@ module.exports.uploadPhoto = async function (req, res) {
         }).save()
       }
     } else if (req.file) {
-      console.log(req.file)
       photo = await new Photo({
         userId: req.user._id,
         key: req.files.key,
         photo: file.location
       }).save()
     }
+
+
+    await User.findByIdAndUpdate(req.user._id, { selectable: true })
+
+
     res.status(201).json(photo)
 
   } catch (e) {
@@ -59,6 +64,15 @@ module.exports.deletePhoto = async function (req, res) {
     })
   }
 }
+module.exports.getPhotoByUserId = async function (req, res) {
+  try {
+    const photos = await Photo.find({ userId: req.params.id })
+    res.status(200).json(photos)
+  } catch (e) {
+    errorHandler(res, e)
+  }
+}
+
 
 async function deleteImageFromS3(filename, callback) {
 
