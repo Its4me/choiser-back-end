@@ -14,8 +14,6 @@ const userSchema = new Schema({
   },
   nickname: {
     type: String,
-    // required: true,
-    //unique: true
   },
   name: {
     type: String
@@ -35,6 +33,9 @@ const userSchema = new Schema({
     default: 0
   },
   avatar: {
+    type: String
+  },
+  avatarKey: {
     type: String
   },
   city: {
@@ -67,6 +68,13 @@ const userSchema = new Schema({
       "Черкасская область",
       "Черниговская область",
       "Черновицкая область"
+    ]
+  },
+  sex: {
+    type: String,
+    enum: [
+      "male",
+      "female"
     ]
   },
   selectable: {

@@ -3,6 +3,7 @@ const Photo = require('../modeles/Photo')
 const aws = require('aws-sdk')
 const keys = require('../config/keys')
 const User = require('../modeles/User')
+const deleteImageFromS3 = require('../utils/deletePhoto')
 
 const s3 = new aws.S3({
   secretAccessKey: keys.secretKey,
@@ -26,7 +27,7 @@ module.exports.uploadPhoto = async function (req, res) {
     } else if (req.file) {
       photo = await new Photo({
         userId: req.user._id,
-        key: req.files.key,
+        key: req.file.key,
         photo: file.location
       }).save()
     }
@@ -74,19 +75,4 @@ module.exports.getPhotoByUserId = async function (req, res) {
 }
 
 
-async function deleteImageFromS3(filename, callback) {
 
-  const params = {
-    Bucket: keys.bucket,
-    Key: filename
-  }
-
-  await s3.deleteObject(params, function (err, data) {
-    if (err) {
-      console.log(err)
-      callback(err)
-    } else {
-      callback(null)
-    }
-  })
-}

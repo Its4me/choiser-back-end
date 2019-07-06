@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/user')
 const passport = require('passport')
+
+const upload = require('../middleware/upload')
+const controller = require('../controllers/user')
 
 router.get('/:id',
   passport.authenticate('jwt', { session: false }),
@@ -11,9 +13,15 @@ router.patch('/',
   passport.authenticate('jwt', { session: false }),
   controller.editUser
 )
-router.delete('/',
+router.delete('/:id',
   passport.authenticate('jwt', { session: false }),
   controller.deleteUser
 )
+router.patch('/avatar',
+  passport.authenticate('jwt', { session: false }),
+  upload.single('avatar'), 
+  controller.editAvatar 
+)
 
 module.exports = router
+ 
