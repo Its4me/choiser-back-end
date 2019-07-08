@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~materialize-css/sass/materialize.scss';
+
+*{
+  box-sizing: border-box;
+}
+body, html{
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+.input-field.col{
+  padding: 0;
+}
+.input-field.col label{
+  left: 0;
+}
+
+button, input, optgroup, select, textarea{
+  font-family: 'Roboto', sans-serif;
+}
+.input-field .helper-text{
+  position: absolute;
+}
