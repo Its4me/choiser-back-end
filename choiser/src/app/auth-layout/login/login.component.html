@@ -42,5 +42,18 @@
       </span>
     </span>
     </div>
-  <button class="waves-effect waves-light btn ">Вход</button>
+
+    <button 
+      type="submit"
+      class="waves-effect waves-light btn" 
+      *ngIf="!loader; else load"
+      >Вход
+    </button>
+    <ng-template #load>
+      <div class="center">
+        <app-loader></app-loader>
+      </div>
+    
+    </ng-template>
+
 </form>

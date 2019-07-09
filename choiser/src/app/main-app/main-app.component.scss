@@ -1,0 +1,16 @@
+.layout{
+  width: 100%;
+  float: left;
+  display: flex;
+}
+main{
+  float: left;
+  width: 100%;
+  background-color: #fbfbfb;
+  padding: .75rem;
+}
+.navbar{
+  width: 300px;
+  flex: 0 0 300px;
+  min-height: 100vh
+}

@@ -1,3 +1,4 @@
+import { AuthCoreService } from './../core/services/authCore.service';
 import { AuthLayoutComponent } from './auth-layout.component';
 import { AuthService } from './auth.service';
 import { NgModule } from '@angular/core';

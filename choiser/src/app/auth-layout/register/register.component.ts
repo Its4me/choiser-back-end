@@ -1,12 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { MaterialService } from './../../shared/classes/material.service';
+import { Router } from '@angular/router';
+import { AuthService } from './../auth.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
+
+  loader: boolean = false
+
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -14,19 +21,38 @@ export class RegisterComponent implements OnInit {
     nickname: ['', [Validators.required, Validators.minLength(2)]],
   })
 
-  constructor(private fb: FormBuilder) { 
-    
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {
+
   }
 
   ngOnInit() {
   }
+  ngOnDestroy() {
 
-  onSubmit(){
-    if(this.form.invalid){
-      // вывести что нужно заполнить поля
+  }
+
+  onSubmit() {
+
+    if (this.form.invalid) {
+      MaterialService.toast('Заполните все поля')
       return;
     }
-    
+    this.loader = true
+    this.auth.register(this.form.value)
+      .pipe(untilDestroyed(this))
+      .subscribe(res => {
+        this.router.navigate(['choise'])
+      },
+        err => {
+          MaterialService.toast(err.message)
+          this.loader = false
+        }
+      )
+
   }
 
 }

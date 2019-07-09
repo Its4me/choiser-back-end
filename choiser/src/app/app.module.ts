@@ -1,3 +1,4 @@
+import { MainAppModule } from './main-app/main-app.module';
 import { AuthModule } from './auth-layout/auth.module';
 import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,7 +14,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    CoreModule,
+    MainAppModule
   ],
   providers: [],
   bootstrap: [AppComponent]
