@@ -1,4 +1,4 @@
-import { MaterialService } from './../../shared/classes/material.service';
+import { Material } from '../../shared/classes/material';
 import { Router } from '@angular/router';
 import { AuthService } from './../auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   onSubmit() {
 
     if (this.form.invalid) {
-      MaterialService.toast('Заполните все поля')
+      Material.toast('Заполните все поля')
       return;
     }
     this.loader = true
@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.router.navigate(['choise'])
       },
         err => {
-          MaterialService.toast(err.message)
+          Material.toast(err.message)
           this.loader = false
         }
       )

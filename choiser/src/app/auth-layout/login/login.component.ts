@@ -1,4 +1,4 @@
-import { MaterialService } from './../../shared/classes/material.service';
+import { Material } from '../../shared/classes/material';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../auth.service';
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.form.invalid) {
-      MaterialService.toast('Заполните все поля')
+      Material.toast('Заполните все поля')
       return;
     }
     this.loader = true
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.router.navigate(['choise'])
       },
         err => {
-          MaterialService.toast(err.message)
+          Material.toast(err.message)
           this.loader = false
         }
       )

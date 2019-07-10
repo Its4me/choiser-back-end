@@ -1,67 +1,5 @@
-<section>
-  <div class="header">
-    <div class="wrapper-avatar">
-      <img class="circle" src="assets/noMan.jpg" alt="">
-    </div>
-    <div class="header-text">
-      <div class="nickname">nickname</div>
-      <div class="rating">Рейтинг: <strong>75.36</strong></div>
-    </div>
-    <div class="menu">
-      <a class="btn-floating btn-large waves-effect waves-light blue">
-        <i class="fas fa-user-edit"></i>
-      </a>
-      <button class="btn-floating btn-large waves-effect waves-light blue">
-        <i class="fas fa-plus"></i>
-      </button>
-    </div>
-  </div>
-  <div class="carousel-wrapper"  >
-    <div 
-      class="carousel" 
-      #slider
-      [ngClass]="{'flex-block': !sliderInit}">
-      <a 
-        *ngFor="let photo of photos;let i = index" 
-        class="carousel-item"
-        [ngClass]="{'noSlider': !sliderInit}"
-        (click)="open(i)"
-        >
-        <img [src]="photo.img"  #slide  alt="">
-        <div class="item-bottom-panel">
-          <i *ngFor="let star of photo.star | fill" class="fas fa-star"></i>
-          <i *ngFor="let star of photo.star | fill:true" class="far fa-star"></i>
-        </div>
-        <button class="btn-floating btn-small waves-effect waves-light white delete">
-          <i class="fas fa-times "></i>
-        </button>
-      </a>
-    </div>
-    <button
-      *ngIf="sliderInit" 
-      (click)="prevSlide()" 
-      class="arrow a-left waves-effect waves-light btn">
-      <i class="fas fa-chevron-left"></i>
-    </button>
-    <button
-      *ngIf="sliderInit" 
-      (click)="nextSlide()" 
-      class="arrow a-right waves-effect waves-light btn">
-      <i class="fas fa-chevron-right"></i>
-    </button>
-  </div>
-  <div class="info">
-    <h2 class="info-name center">
-      Yanna Chipnova
-    </h2>
-    <h6 class="info-text center">
-      Учавствует в топе региона "Сумская область"
-    </h6>
-  </div>
-</section>
-
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" #megaphoto tabindex="-1" role="dialog" aria-hidden="true">
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
     <!-- Background of PhotoSwipe. 
          It's a separate element as animating opacity is faster than rgba(). -->
@@ -90,6 +28,8 @@
 
                 <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
                 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 
                 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
@@ -109,7 +49,7 @@
                 <div class="pswp__share-tooltip"></div> 
             </div>
 
-            <button #leftButtonSwiper class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
             </button>
 
             <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">

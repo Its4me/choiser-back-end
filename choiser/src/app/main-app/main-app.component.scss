@@ -5,6 +5,8 @@
 }
 main{
   float: left;
+  position: relative;
+  z-index: 2;
   width: 100%;
   background-color: #fbfbfb;
   padding: .75rem;
@@ -12,5 +14,7 @@ main{
 .navbar{
   width: 300px;
   flex: 0 0 300px;
+  z-index: 2;
+  position: relative;
   min-height: 100vh
 }

@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~materialize-css/sass/materialize.scss';
+@import '~photoswipe/src/css/main.scss';
+@import '~photoswipe/dist/default-skin/default-skin.css';
 
 *{
   box-sizing: border-box;
@@ -16,10 +18,23 @@ body, html{
 .input-field.col label{
   left: 0;
 }
-
+.tns1-ow{
+  width: 100%;
+}
 button, input, optgroup, select, textarea{
   font-family: 'Roboto', sans-serif;
 }
 .input-field .helper-text{
   position: absolute;
+}
+section{
+  float: left;
+  width: 100%;
+  border-radius: 2px;
+  min-height: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 8px -3px #000;
+}
+.material-placeholder{
+  height: 100%;
 }

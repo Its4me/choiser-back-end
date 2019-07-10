@@ -8,19 +8,22 @@ import { CommonModule } from '@angular/common';
 import { MainAppComponent } from './main-app.component';
 import { NavbarModule } from './navbar/navbar.module';
 import { RatingComponent } from './rating/rating.component';
+import { FillPipe } from './user/array-fill.pipe';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
     MainAppComponent,
     EditUserComponent,
     RatingComponent,
-    UserComponent,
-    ChoiseComponent
+    ChoiseComponent,
+   
   ],
   imports: [
     CommonModule,
     NavbarModule,
-    SharedModule
+    SharedModule,
+    UserModule
   ]
 })
 export class MainAppModule { }
