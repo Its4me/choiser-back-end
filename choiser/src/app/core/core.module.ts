@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthCoreService } from './services/authCore.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './classes/token.interceptor';
+import { AuthGuard } from './classes/auth.guard';
 
 @NgModule({
   declarations: [],
@@ -11,6 +12,7 @@ import { TokenInterceptor } from './classes/token.interceptor';
   ],
   providers: [
     AuthCoreService,
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,

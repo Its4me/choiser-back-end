@@ -11,7 +11,7 @@ export class AuthCoreService {
 
 
   isLogined(): boolean {
-    return !!this.auth.token
+    return this.auth.token != ''
   }
 
   getToken(): string {

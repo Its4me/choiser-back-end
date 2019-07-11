@@ -1,11 +1,10 @@
-import { MaterialInstance, MaterialSlider } from './../../shared/interfaces';
+import {  MaterialSlider } from './../../shared/interfaces';
 import { Material } from './../../shared/classes/material';
 import {
   Component, OnInit, ViewChild, ElementRef,
-  AfterViewInit, OnDestroy, ViewChildren, QueryList
+  AfterViewInit, OnDestroy, ViewChildren, QueryList, EventEmitter
 } from '@angular/core';
-import * as PhotoSwipe from 'photoswipe/dist/photoswipe.min.js'
-import * as PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default.min.js'
+
 
 @Component({
   selector: 'app-user',
@@ -15,9 +14,8 @@ import * as PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default.min
 export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('slider') sliderRef: ElementRef
-  @ViewChild('megaphoto') megaphotoRef: ElementRef
-  @ViewChild('leftButtonSwiper') leftButtonSwiperRef: ElementRef
   @ViewChildren('slide') slides: QueryList<ElementRef>;
+  private openBigPhoto: EventEmitter<any> = new EventEmitter();
 
   slider: MaterialSlider
   slidesInstance: any
@@ -60,47 +58,9 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   prevSlide() {
     this.slider.prev()
   }
-
-  open(i: number) {
-    const nativeElems = this.slides.toArray().map(elem => elem.nativeElement)
-    const items = []
-
-
-    const options = {
-      index: i,
-      bgOpacity: 0.8
-    }
-
-    nativeElems.forEach(elem => {
-      const img = new Image()
-      img.src = elem.src
-
-      const option = {
-        src: elem.src,
-        w: null,
-        h: null
-      }
-
-      img.onload = function(e: any) {
-        option.w = e.composedPath()[0].width
-        option.h = e.composedPath()[0].height
-      }
-      items.push(option)
-    })
-
-    const gallery = new PhotoSwipe ( 
-      this.megaphotoRef.nativeElement, 
-      PhotoSwipeUI_Default, 
-      items,
-      options
-    );
-    gallery.init();
-    console.log(items);
-    
-    
+  open(i:number) {
+    this.openBigPhoto.emit({index: i, photos: this.slides})
   }
-
-  private swipeLeftTwo(){
-
-  }
+ 
+  
 }
