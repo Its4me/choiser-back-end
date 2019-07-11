@@ -1,3 +1,4 @@
+import { AuthGuard } from './core/classes/auth.guard';
 import { UserComponent } from './main-app/user/user.component';
 import { ChoiseComponent } from './main-app/choise/choise.component';
 import { MainAppComponent } from './main-app/main-app.component';
@@ -18,7 +19,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: '', component: MainAppComponent, children: [
+    path: '', component: MainAppComponent, canActivate: [AuthGuard] ,children: [
       { path: '', pathMatch: 'full', redirectTo: 'choise' },
       { path: 'choise', component: ChoiseComponent, },
       { path: 'rating', component: RatingComponent, },

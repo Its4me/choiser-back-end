@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { PhotoswiperComponent } from './photoswiper/photoswiper.component';
 import { UserComponent } from './user.component';
 import { FillPipe } from './array-fill.pipe';
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  providers: [UserService]
 })
 export class UserModule { }

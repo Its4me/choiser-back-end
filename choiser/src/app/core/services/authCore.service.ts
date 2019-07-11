@@ -6,7 +6,7 @@ export class AuthCoreService {
 
   auth: Login = {
     token: '',
-    _id: ''
+    userId: ''
   }
 
 
@@ -23,9 +23,9 @@ export class AuthCoreService {
   }
 
   setId(id: string) {
-    this.auth._id = id
+    this.auth.userId = id
   }
-  getId(id: string){
-    return this.auth._id
+  getId(){
+    return this.auth.userId
   }
 }

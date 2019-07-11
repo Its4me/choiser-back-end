@@ -1,11 +1,14 @@
 <ul class="sidenav sidenav-fixed">
   <h4>Choiser</h4>
   <li>
-    <div class="user-view">
-      <a routerLink="/user/id" ><img class="circle" src="assets/noMan.jpg"></a>
-      <a routerLink="/user/id"  class="text">
-        <div class="nickname">CoolNickName</div>
-        <div class="myname">John Doe</div>
+    <div class="user-view" *ngIf="user$ | async as user">
+      <a  [routerLink]="[ '/user', user._id ]" >
+        <img *ngIf="user.avatar" class="circle" [src]="user.avatar">
+        <img *ngIf="!user.avatar" class="circle" src="assets/noMan.jpg">
+      </a>
+      <a  [routerLink]="[ '/user', user._id ]"  class="text">
+        <div class="nickname">{{user.nickname}}</div>
+        <div class="myname">{{user.name}} {{user.lastname}}</div>
       </a>
     </div>
   </li>

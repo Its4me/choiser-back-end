@@ -1,3 +1,6 @@
+import { UserCoreService } from './../core/services/userCore.service';
+import { Router } from '@angular/router';
+import { AuthCoreService } from './../core/services/authCore.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainAppComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private userCore: UserCoreService
+  ) { }
 
   ngOnInit() {
+
+ 
   }
 
 }

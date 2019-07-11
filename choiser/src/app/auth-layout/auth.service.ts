@@ -19,9 +19,9 @@ export class AuthService {
     return this.http.post<Login>('/api/auth/login', user).pipe(
       tap(res => { 
         this.authCore.setToken(res.token) 
-        this.authCore.setId(res._id) 
+        this.authCore.setId(res.userId) 
         localStorage.setItem('token', res.token)
-        localStorage.setItem('_id', res._id)
+        localStorage.setItem('_id', res.userId)
       })
     )
   }
@@ -30,9 +30,9 @@ export class AuthService {
     return this.http.post<Login>('/api/auth/register', user).pipe(
       tap(res => { 
         this.authCore.setToken(res.token) 
-        this.authCore.setId(res._id) 
+        this.authCore.setId(res.userId) 
         localStorage.setItem('token', res.token)
-        localStorage.setItem('_id', res._id)
+        localStorage.setItem('_id', res.userId)
       })
     )
   }
