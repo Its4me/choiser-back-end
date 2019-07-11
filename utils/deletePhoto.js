@@ -9,7 +9,7 @@ const s3 = new aws.S3({
 const deleteImageFromS3 = async function (filename, callback) {
 
   const params = {
-    Bucket: keys.bucket,
+    Bucket: 'choiser',
     Key: filename
   }
 
