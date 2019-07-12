@@ -1,0 +1,26 @@
+<div class="upload">
+  <div class="photos">
+    <div class="photo" *ngFor="let photo of uploadPhotos; let i = index">
+      <img [src]="photo.photo" alt="">
+      <button 
+        (click)="delete(i)"
+        class="btn-floating btn-small waves-effect waves-light white delete">
+        <i class="fas fa-times "></i>
+      </button>
+    </div>
+  </div>
+  <div class="center">
+    <button 
+      (click)="cancel()"
+      class="waves-effect waves-light btn save black-text white"
+      >Отмена
+    </button>
+    <button 
+      (click)="save()"
+      class="waves-effect waves-light btn save"
+      >Сохранить
+    </button>
+    
+  </div>
+ 
+</div>

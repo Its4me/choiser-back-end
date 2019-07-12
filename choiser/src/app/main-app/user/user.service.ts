@@ -19,5 +19,8 @@ export class UserService {
     return this.http.get<User>(`api/user/${_id}`)
   }
 
+  uploadPhoto(data: FormData): Observable<any>{
+    return this.http.post('api/photo', data)
+  }
 
 }

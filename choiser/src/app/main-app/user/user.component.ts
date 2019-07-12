@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { UserService } from './user.service';
 import { forkJoin } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
@@ -24,57 +24,48 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   slider: MaterialSlider
   slidesInstance: any
   user: User = {}
-  sliderInit: boolean
+  sliderCheck: boolean = false
 
-  photos: Photo[] = [
-    // { img: 'assets/test1.jpg', star: 4 },
-    // { img: 'assets/test2.jpg', star: 5 },
-    // { img: 'assets/test3.jpg', star: 3 },
-    // { img: 'assets/test4.jpg', star: 2 },
-    // { img: 'assets/test5.jpg', star: 1 },
-    // { img: 'assets/test6.jpg', star: 4 },
-    // { img: 'assets/test7.jpg', star: 3 },
-  ]
+  photoFile: File[] = []
+  uploadPhotos: Photo[] = []
+
+
+  photos: Photo[] = []
 
 
 
   constructor(
     private userCore: UserCoreService,
     private userServ: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+
   ) { }
 
   ngOnInit() {
-    
-    this.route.params.subscribe(params => {
-      this.user._id = params.id
-    })
 
-    forkJoin(
-      this.userServ.getUserFromBack(this.user._id),
-      this.userServ.getUserPhotos(this.user._id))
+    this.route.params
       .pipe(untilDestroyed(this))
-      .subscribe(([user, photos]) => {
-        this.user = user
-        this.photos = photos.map(photo => {
-          photo.stars = this.formulaStar(photo.likes, photo.views)
-          return photo
-        })
-        this.sliderInit = this.photos.length > 5
+      .subscribe(params => {
+        this.user._id = params.id
+        this.getUserPage()
       })
-
+    // this.router.events
+    //   .pipe(untilDestroyed(this))
+    //   .subscribe((params) => {
+    //     if (params instanceof NavigationEnd) {
+    //       console.log(params);
+    //     }
+    //   });
   }
 
   ngAfterViewInit() {
-
-    if (this.sliderInit) {
-      this.slider = Material.initSlider(this.sliderRef)
-    }
-
+    this.initSLider()
   }
   ngOnDestroy() {
-    this.slider.destroy()
-
+    if (this.slider) {
+      this.slider.destroy()
+    }
   }
 
   nextSlide() {
@@ -99,4 +90,43 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  getUserPage() {
+    forkJoin(
+      this.userServ.getUserFromBack(this.user._id),
+      this.userServ.getUserPhotos(this.user._id))
+      .pipe(untilDestroyed(this))
+      .subscribe(([user, photos]) => {
+        this.user = user
+        this.photos = photos.map(photo => {
+          photo.stars = this.formulaStar(photo.likes, photo.views)
+          return photo
+        })
+        this.initSLider()
+      })
+  }
+  onPhotosUpload(event: any) {
+    this.photoFile= []
+    this.uploadPhotos = []
+
+    for (let i = 0; i < Object.keys(event.target.files).length; i++) {
+      const reader = new FileReader()
+
+      this.photoFile.push(event.target.files[i])
+      this.uploadPhotos[i] = {}
+      reader.readAsDataURL(event.target.files[i])
+
+      reader.onload = () => {
+        this.uploadPhotos[i].photo = reader.result as string
+      }
+    }
+   
+  }
+
+
+  initSLider() {
+    this.sliderCheck = this.photos.length > 5
+    if (this.sliderCheck) {
+      this.slider = Material.initSlider(this.sliderRef)
+    }
+  }
 }
