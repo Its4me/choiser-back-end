@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Login } from 'src/app/shared/interfaces';
+import { Login, User } from 'src/app/shared/interfaces';
 
 @Injectable()
 export class AuthCoreService {
 
-  auth: Login = {
+  private auth: Login = {
     token: '',
     userId: ''
   }
+  private user: User = {}
 
 
   isLogined(): boolean {
@@ -25,7 +26,14 @@ export class AuthCoreService {
   setId(id: string) {
     this.auth.userId = id
   }
-  getId(){
+  getId(): string{
     return this.auth.userId
+  }
+
+  getUser(): User{
+    return this.user
+  }
+  setUser(user: User){
+    this.user = user
   }
 }

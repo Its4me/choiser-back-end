@@ -1,4 +1,4 @@
-import { Photo, User } from './../../shared/interfaces';
+import { Photo, User } from '../../shared/interfaces';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -21,6 +21,13 @@ export class UserService {
 
   uploadPhoto(data: FormData): Observable<any>{
     return this.http.post('api/photo', data)
+  }
+  deletePhoto(id: string): Observable<any>{
+    return this.http.delete(`api/photo/${id}`)
+  }
+
+  editUser(user: User): Observable<User> {
+    return this.http.patch(`api/user`, user)
   }
 
 }

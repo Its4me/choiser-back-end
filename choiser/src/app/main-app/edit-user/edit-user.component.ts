@@ -1,15 +1,89 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../../auth-layout/auth.service';
+import { UserService } from '../../core/services/user.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { User } from './../../shared/interfaces';
+import { AuthCoreService } from './../../core/services/authCore.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { Observable } from 'rxjs';
+import { Material } from 'src/app/shared/classes/material';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss']
 })
-export class EditUserComponent implements OnInit {
+export class EditUserComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  user: User
+  loading = false
 
-  ngOnInit() {
+  form = this.fb.group({
+    name: ['user.name'],
+    lastname: ['user.lastname'],
+    email: ['user.email'],
+    nickname: ['user.nickname'],
+    sex: ['user.sex'],
+    region: ['user.region'],
+    city: ['user.city'],
+  })
+
+
+  constructor(
+    private auth: AuthCoreService,
+    private fb: FormBuilder,
+    private userServ: UserService
+  ) { }
+
+  ngOnInit() { 
+    if (Object.keys(this.auth.getUser()).length == 0) {
+      const _id = this.auth.getId()
+      this.userServ.getUserFromBack(_id)
+        .pipe(untilDestroyed(this))
+        .subscribe(
+          user => {
+            this.initForm(user)
+          },
+          err => Material.toast('Ошибка хз что случилось ' + err)
+        )
+    }else {
+      this.user = this.auth.getUser()
+      this.initForm(this.user)
+    }
+  }
+
+  ngOnDestroy(){
+
+  }
+
+
+  initForm(user: User) {
+    this.form.patchValue({
+      name: user.name,
+      lastname: user.lastname,
+      email: user.email,
+      nickname: user.nickname,
+      region: user.region,
+      city: user.city,
+      sex: user.sex
+    })
+    Material.updateInputs()
+  }
+
+  onSubmit(){
+    this.loading = true
+    this.userServ.editUser(this.form.value)
+      .pipe(untilDestroyed(this))
+      .subscribe(
+        res => { 
+          Material.toast('Сохранено')
+          this.loading = false
+        }, err => {
+          Material.toast('Ошибка:' + err)
+          this.loading = false
+        }
+      )
   }
 
 }

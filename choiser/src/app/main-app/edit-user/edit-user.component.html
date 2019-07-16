@@ -1,3 +1,57 @@
-<p>
-  edit-user works!
-</p>
+<section>
+  <h3>Редактировать профиль</h3>
+  <div class="divider"></div>
+  <form class="row" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="input-field col s12 m6">
+      <input id="nickname" type="text" formControlName="nickname">
+      <label for="nickname">Ник</label>
+    </div>
+    <div class="input-field col s12 m6">
+      <input id="email" type="text" formControlName="email">
+      <label for="email">Email</label>
+    </div>
+    <div class="input-field col s12 m6">
+      <input id="name" type="text" formControlName="name">
+      <label for="name">Имя</label>
+    </div>
+    <div class="input-field col s12 m6">
+      <input id="lastname" type="text" formControlName="lastname">
+      <label for="lastname">Фамилия</label>
+    </div>
+    <div class="input-field col s12 m6">
+      <input id="region" class="autocomplete" formControlName="region" type="text">
+      <label for="region">Регион</label>
+    </div>
+    <div class="input-field col s12 m6">
+      <input id="city" class="autocomplete" formControlName="city" type="text">
+      <label for="city">Город</label>
+    </div>
+    <div class="input-field col s12 m6 d-flex">
+      <p>
+        <label>
+          <input name="sex" type="radio" value="male" formControlName="sex">
+          <span>Мужской</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input name="sex" type="radio" value="female" formControlName="sex">
+          <span>Женский</span>
+        </label>
+      </p>
+    </div>
+    <div class="col s12 center">
+      <button 
+        type="submit"  
+        *ngIf="!loding; else loader" 
+        class="waves-effect waves-light btn"
+        >Сохранить
+      </button>
+      <ng-template #loader>
+        <app-loader></app-loader>
+      </ng-template>
+    </div>
+
+
+  </form>
+</section>

@@ -10,6 +10,7 @@ export interface User {
   city?: string,
   region?: string,
   nickname?: string,
+  sex?: string
 }
 
 export interface Login {

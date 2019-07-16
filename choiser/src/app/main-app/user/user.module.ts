@@ -1,4 +1,5 @@
-import { UserService } from './user.service';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { UserService } from '../../core/services/user.service';
 import { PhotoswiperComponent } from './photoswiper/photoswiper.component';
 import { UserComponent } from './user.component';
 import { FillPipe } from './array-fill.pipe';
@@ -14,8 +15,8 @@ import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
     UploadPhotoComponent
   ],
   imports: [
-    CommonModule
-  ],
-  providers: [UserService]
+    CommonModule,
+    SharedModule
+  ]
 })
 export class UserModule { }

@@ -1,4 +1,7 @@
 <div class="upload">
+  <div class="center big-fz">
+    Загрузить новые фото
+  </div>
   <div class="photos">
     <div class="photo" *ngFor="let photo of uploadPhotos; let i = index">
       <img [src]="photo.photo" alt="">
@@ -9,7 +12,7 @@
       </button>
     </div>
   </div>
-  <div class="center">
+  <div class="center" *ngIf="!loader; else load">
     <button 
       (click)="cancel()"
       class="waves-effect waves-light btn save black-text white"
@@ -22,5 +25,12 @@
     </button>
     
   </div>
+  <ng-template #load>
+    <div class="center">
+      <app-loader></app-loader>
+    </div>
+    
+  </ng-template>
+  
  
 </div>

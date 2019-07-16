@@ -14,9 +14,11 @@ export class Material {
       padding: 0
     });
   }
-  static initPhotoView(elems: ElementRef[]){
-    const nativeElems = elems.map(elem => elem.nativeElement)
-    
-  
+  // static initPhotoView(elems: ElementRef[]){
+  //   const nativeElems = elems.map(elem => elem.nativeElement)
+  // }
+
+  static updateInputs(){
+    return M.updateTextFields();
   }
 }

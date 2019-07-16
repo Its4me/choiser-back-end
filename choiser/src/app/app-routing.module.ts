@@ -24,7 +24,7 @@ const routes: Routes = [
       { path: 'choise', component: ChoiseComponent, },
       { path: 'rating', component: RatingComponent, },
       { path: 'user/:id', component: UserComponent, },
-      { path: 'user/edit', component: EditUserComponent, }
+      { path: 'edit/user', component: EditUserComponent, }
     ]
   } 
 ]; 
