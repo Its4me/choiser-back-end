@@ -1,0 +1,20 @@
+<form [formGroup]="form">
+  <div class="input-field col s12 m6"  (click)="regionErr()" >
+    <input 
+      id="region" 
+      class="autocomplete" 
+      #region
+      formControlName="region" 
+      type="text"
+      autocomplete="off" 
+    >
+    <label for="region">Регион</label>
+    <!-- <span *ngIf="form.get(region).errors">
+      Выберите регион из списка
+    </span> -->
+  </div>
+  <div class="input-field col s12 m6">
+    <input id="city" class="autocomplete" #city formControlName="city" type="text">
+    <label for="city">Город</label>
+  </div>
+</form>

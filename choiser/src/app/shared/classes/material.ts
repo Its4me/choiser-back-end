@@ -21,4 +21,8 @@ export class Material {
   static updateInputs(){
     return M.updateTextFields();
   }
+
+  static initAutoComplete(elems: ElementRef, options){
+    return M.Autocomplete.init(elems.nativeElement, {data: options});
+  }
 }

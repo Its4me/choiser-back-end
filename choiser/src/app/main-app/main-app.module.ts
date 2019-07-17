@@ -1,3 +1,4 @@
+import { RegionModule } from './../shared/region-choise/region.module';
 import { SharedModule } from './../shared/shared.module';
 import { ChoiseComponent } from './choise/choise.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
@@ -21,7 +22,8 @@ import { UserModule } from './user/user.module';
     CommonModule,
     NavbarModule,
     SharedModule,
-    UserModule
+    UserModule,
+    RegionModule
   ]
 })
 export class MainAppModule { }

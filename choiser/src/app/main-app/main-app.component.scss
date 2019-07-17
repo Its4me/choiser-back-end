@@ -15,5 +15,6 @@ main{
   flex: 0 0 300px;
   z-index: 2;
   position: relative;
-  min-height: 100vh
+  min-height: 100vh;
+  box-shadow: -3px 2px 10px 0px #000;
 }

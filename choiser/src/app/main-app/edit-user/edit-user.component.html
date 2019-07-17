@@ -18,14 +18,10 @@
       <input id="lastname" type="text" formControlName="lastname">
       <label for="lastname">Фамилия</label>
     </div>
-    <div class="input-field col s12 m6">
-      <input id="region" class="autocomplete" formControlName="region" type="text">
-      <label for="region">Регион</label>
-    </div>
-    <div class="input-field col s12 m6">
-      <input id="city" class="autocomplete" formControlName="city" type="text">
-      <label for="city">Город</label>
-    </div>
+ 
+    <app-region-choise [region]="user.region" [city]="user.city"></app-region-choise>
+
+
     <div class="input-field col s12 m6 d-flex">
       <p>
         <label>

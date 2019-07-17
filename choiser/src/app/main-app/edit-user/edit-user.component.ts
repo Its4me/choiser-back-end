@@ -1,11 +1,9 @@
-import { AuthService } from './../../auth-layout/auth.service';
 import { UserService } from '../../core/services/user.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { User } from './../../shared/interfaces';
 import { AuthCoreService } from './../../core/services/authCore.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable } from 'rxjs';
 import { Material } from 'src/app/shared/classes/material';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 
@@ -16,7 +14,11 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 })
 export class EditUserComponent implements OnInit, OnDestroy {
 
-  user: User
+  user: User = {
+    region: '',
+    city: ''
+  }
+  
   loading = false
 
   form = this.fb.group({
@@ -24,9 +26,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
     lastname: ['user.lastname'],
     email: ['user.email'],
     nickname: ['user.nickname'],
-    sex: ['user.sex'],
-    region: ['user.region'],
-    city: ['user.city'],
+    sex: ['user.sex']
   })
 
 
@@ -51,6 +51,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
       this.user = this.auth.getUser()
       this.initForm(this.user)
     }
+
   }
 
   ngOnDestroy(){
@@ -64,10 +65,9 @@ export class EditUserComponent implements OnInit, OnDestroy {
       lastname: user.lastname,
       email: user.email,
       nickname: user.nickname,
-      region: user.region,
-      city: user.city,
       sex: user.sex
     })
+  
     Material.updateInputs()
   }
 
@@ -75,7 +75,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
     this.loading = true
     this.userServ.editUser(this.form.value)
       .pipe(untilDestroyed(this))
-      .subscribe(
+      .subscribe( 
         res => { 
           Material.toast('Сохранено')
           this.loading = false

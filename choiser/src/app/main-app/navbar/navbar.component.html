@@ -1,45 +1,31 @@
-<ul class="sidenav sidenav-fixed">
+<div class="sidenav sidenav-fixed">
   <h4>Choiser</h4>
-  <li>
-    <div class="user-view" *ngIf="user$ | async as user">
-      <a  [routerLink]="[ '/user', user._id ]" >
-        <img *ngIf="user.avatar" class="circle" [src]="user.avatar">
-        <img *ngIf="!user.avatar" class="circle" src="assets/noMan.jpg">
-      </a>
-      <a  [routerLink]="[ '/user', user._id ]"  class="text">
-        <div class="nickname">{{user.nickname}}</div>
-        <div class="myname">{{user.name}} {{user.lastname}}</div>
-      </a>
-    </div>
-  </li>
-  <li>
-    <div class="divider"></div>
-  </li>
-  <li>
-    <a routerLink="/choise" class="links waves-effect">
-      <i class="fas fa-mouse-pointer"></i>
-      Играть
+
+
+  <div class="user-view" *ngIf="user$ | async as user">
+    <a [routerLink]="[ '/user', user._id ]">
+      <img *ngIf="user.avatar" class="circle" [src]="user.avatar">
+      <img *ngIf="!user.avatar" class="circle" src="assets/noMan.jpg">
     </a>
-  </li>
-  <li>
-    <a routerLink="/rating" class="links waves-effect">
-      <i class="fas fa-signal"></i>
-      Рейтинг
+    <a [routerLink]="[ '/user', user._id ]" class="text">
+      <div class="nickname">{{user.nickname}}</div>
+      <div class="myname">{{user.name}} {{user.lastname}}</div>
     </a>
-  </li>
-
-
-
-  <li>
-    <a class="links waves-effect">
-      <i class="fas fa-door-open"></i>
-      Выход
-    </a>
-    <div class="divider"></div>
-    <div class="copyright">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quam quas illo, fuga dignissimos incidunt unde facilis vel asperiores ad et dolor maiores at eum excepturi ea rem exercitationem aliquid.
-    </div>
-
-  </li>
-  
-</ul>
+  </div>
+  <a mat-button routerLink="/choise" class="links ">
+    <i class="fas fa-mouse-pointer big-margin"></i>
+    Играть
+  </a>
+  <a mat-button routerLink="/rating" class="links ">
+    <i class="fas fa-signal"></i>
+    Рейтинг
+  </a>
+  <a mat-button class="links">
+    <i class="fas fa-door-open"></i>
+    Выход
+  </a>
+  <div class="copyright">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quam quas illo, fuga dignissimos incidunt unde
+    facilis vel asperiores ad et dolor maiores at eum excepturi ea rem exercitationem aliquid.
+  </div>
+</div>

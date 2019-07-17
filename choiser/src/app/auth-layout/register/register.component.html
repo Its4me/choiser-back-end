@@ -1,24 +1,28 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <h2>Регистрация</h2>
   <p>Уже есть аккаунт? Тогда <a routerLink="../login">войдите</a></p>
-  <div class="input-field col s12">
-    <input type="text" id="email" formControlName="email"
+  <mat-form-field class="input-field col s12">
+    <input  
+      matInput 
+      type="text"
+      formControlName="email"
       [ngClass]="{'invalid': form.get('email').invalid && form.get('email').touched}">
-    <label for="email">Email</label>
-    <span class="helper-text red-text" *ngIf="form.get('email').errors && form.get('email').touched">
+    <mat-error  class="helper-text red-text" *ngIf="form.get('email').errors && form.get('email').touched">
       <span *ngIf="form.get('email').errors.required">
         Введите свой email
       </span>
       <span *ngIf="form.get('email').errors.email && !form.get('email').errors.requaired">
         Введите правильный email
       </span>
-    </span>
-  </div>
-  <div class="input-field col s12">
-    <input type="text" id="nick" formControlName="nickname"
+    </mat-error >
+  </mat-form-field>
+  <mat-form-field class="input-field col s12">
+    <input 
+      type="text" 
+      formControlName="nickname"
+      matInput
       [ngClass]="{'invalid': form.get('nickname').invalid && form.get('nickname').touched}">
-    <label for="nick">Ник</label>
-    <span class="helper-text red-text" *ngIf="form.get('nickname').errors && form.get('nickname').touched">
+    <mat-error  class="helper-text red-text" *ngIf="form.get('nickname').errors && form.get('nickname').touched">
       <span *ngIf="form.get('nickname').errors.required">
         Введите свой ник
       </span>
@@ -26,13 +30,15 @@
         Минимум {{form.get('nickname').errors.minlength.requiredLength}} символа
         сейчас {{form.get('nickname').errors.minlength.actualLength}}
       </span>
-    </span>
-  </div>
-  <div class="input-field col s12">
-    <input type="password" id="password" formControlName="password"
+    </mat-error >
+  </mat-form-field>
+  <mat-form-field class="input-field col s12">
+    <input 
+      type="password"
+      formControlName="password"
+      matInput
       [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}">
-    <label for="password">Пароль</label>
-    <span class="helper-text red-text" *ngIf="form.get('password').errors && form.get('password').touched">
+    <mat-error  class="helper-text red-text" *ngIf="form.get('password').errors && form.get('password').touched">
       <span *ngIf="form.get('password').errors.required">
         Введите свой пароль
       </span>
@@ -40,9 +46,14 @@
         Минимум {{form.get('password').errors.minlength.requiredLength}} символов
         сейчас {{form.get('password').errors.minlength.actualLength}}
       </span>
-    </span>
-  </div>
-  <button type="submit" class="waves-effect waves-light btn" *ngIf="!loader; else load">Регистрация
+    </mat-error >
+  </mat-form-field>
+  <button 
+    type="submit" 
+    mat-raised-button
+    color="primary"
+    *ngIf="!loader; else load"
+    >Регистрация
   </button>
   <ng-template #load>
     <div class="center">
