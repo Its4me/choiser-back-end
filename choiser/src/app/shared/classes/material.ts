@@ -1,28 +1,19 @@
-import { MaterialInstance, MaterialSlider } from './../interfaces';
-import { ElementRef } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-declare var M
 
+@Injectable()
 export class Material {
-  static toast(text: string) {
-    M.toast({ html: text })
-  }
-  static initSlider(elem: ElementRef): MaterialSlider {
-    return M.Carousel.init(elem.nativeElement, {
-      dist: 0,
-      numVisible: 5,
-      padding: 0
+
+  constructor(
+    private snackBar: MatSnackBar
+  ){}
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Закрыть', {
+      duration: 3500,
     });
   }
-  // static initPhotoView(elems: ElementRef[]){
-  //   const nativeElems = elems.map(elem => elem.nativeElement)
-  // }
 
-  static updateInputs(){
-    return M.updateTextFields();
-  }
 
-  static initAutoComplete(elems: ElementRef, options){
-    return M.Autocomplete.init(elems.nativeElement, {data: options});
-  }
 }

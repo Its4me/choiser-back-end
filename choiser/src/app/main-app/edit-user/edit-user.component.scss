@@ -3,7 +3,12 @@
 }
 h3{
   text-align: center;
-}
+  
+  margin: 0;
+  padding: 1.9466666667rem 0 1.168rem 0;
+  border-bottom: 1px solid #d0d0d0;
+
+} 
 .row .m6{
   width: calc(50% - 3rem);
   margin: 1.5rem;
@@ -13,6 +18,16 @@ h3{
 }
 .d-flex{
   display: flex;
+  margin: 0 auto 1.5rem;
+  width: 350px;
+  padding-top: 1.5rem;
   justify-content: space-around;
   align-items: center;
+}
+form{
+  padding-bottom: .75rem;
+}
+app-region-choise{
+  float: left;
+  width: 100%;
 }

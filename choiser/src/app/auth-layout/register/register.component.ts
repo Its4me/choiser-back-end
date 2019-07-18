@@ -24,7 +24,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private material: Material
   ) {
 
   }
@@ -38,7 +39,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   onSubmit() {
 
     if (this.form.invalid) {
-      Material.toast('Заполните все поля')
+      this.material.openSnackBar('Заполните все поля')
       return;
     }
     this.loader = true
@@ -48,7 +49,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.router.navigate(['choise'])
       },
         err => {
-          Material.toast(err.message)
+          this.material.openSnackBar(err.error.message)
           this.loader = false
         }
       )

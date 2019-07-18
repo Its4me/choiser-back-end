@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Material } from '../../shared/classes/material';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
@@ -22,8 +23,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
-
+    private router: Router,
+    private material: Material
   ) { }
 
   ngOnInit() {
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.form.invalid) {
-      Material.toast('Заполните все поля')
+      this.material.openSnackBar('Заполните все поля')
       return;
     }
     this.loader = true
@@ -41,11 +42,16 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(res => {
         this.router.navigate(['choise'])
       },
-        err => {
-          Material.toast(err.message)
+        (err: HttpErrorResponse )=> {
+          if(err.status == 401){
+            this.material.openSnackBar('Не верный логин или пароль')
+          }else {
+            this.material.openSnackBar(err.message)
+          }
           this.loader = false
         }
       )
-
   }
+
+ 
 }

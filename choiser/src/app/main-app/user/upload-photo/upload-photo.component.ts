@@ -41,14 +41,14 @@ export class UploadPhotoComponent implements OnInit, OnDestroy {
       .pipe(untilDestroyed(this))
       .subscribe(res => {
         this.onPhotoLoad.emit(res)
-        Material.toast(`Сохранено ${this.uploadPhotos.length} фото`)
+        //Material.toast(`Сохранено ${this.uploadPhotos.length} фото`)
         this.photoFile.splice(0)
         this.loader = false
         this.uploadPhotos.splice(0)
       },
         err => {
           this.loader = false
-          Material.toast(err.message)
+          //Material.toast(err.message)
         }
       )
 

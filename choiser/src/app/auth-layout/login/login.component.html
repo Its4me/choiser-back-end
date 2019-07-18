@@ -6,6 +6,7 @@
       type="text" 
       matInput
       formControlName="email"
+      placeholder="Email"
       [ngClass]="{'invalid': form.get('email').invalid && form.get('email').touched}"
       >
 
@@ -26,6 +27,7 @@
       type="password" 
       id="password"
       matInput
+      placeholder="Пароль"
       formControlName="password"
       [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
       >
@@ -42,7 +44,6 @@
       </span>
     </mat-error>
   </mat-form-field>
-
     <button 
       type="submit"
       mat-raised-button
@@ -51,8 +52,8 @@
       >Вход
     </button>
     <ng-template #load>
-      <div class="center">
-        <app-loader></app-loader>
+      <div class="flex-center">
+        <mat-spinner diameter="38"></mat-spinner>
       </div>
     
     </ng-template>

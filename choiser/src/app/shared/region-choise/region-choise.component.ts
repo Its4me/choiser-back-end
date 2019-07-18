@@ -9,9 +9,6 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./region-choise.component.scss']
 })
 export class RegionChoiseComponent implements OnInit {
-  @ViewChild('city') cityRef: ElementRef
-  @ViewChild('region') regionRef: ElementRef
-
   @Input() region: string
   @Input() city: string
 
@@ -41,15 +38,10 @@ export class RegionChoiseComponent implements OnInit {
         regions.areas.forEach(region => {
           data[region.name] = null
         })
-        Material.initAutoComplete(this.regionRef, data)
       }
     )
   }
 
-  regionErr(){
-    console.log(this.form.get('region'));
-    
-  }
    private regionValidation(region: string, choseArray: boolean) {
     return (formGroup: FormGroup) => {
         const control = formGroup.controls[region];

@@ -1,5 +1,6 @@
+import { Material } from 'src/app/shared/classes/material';
 import { MaterialSlider, User, Photo } from './../../shared/interfaces';
-import { Material } from './../../shared/classes/material';
+
 import {
   Component, OnInit, ViewChild, ElementRef,
   AfterViewInit, OnDestroy, ViewChildren, QueryList, EventEmitter
@@ -8,6 +9,9 @@ import { UserService } from '../../core/services/user.service';
 import { forkJoin } from 'rxjs';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { SwiperComponent, SwiperDirective, SwiperConfigInterface,
+  SwiperScrollbarInterface, SwiperPaginationInterface } from 'ngx-swiper-wrapper';
+
 
 @Component({
   selector: 'app-user',
@@ -16,11 +20,12 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 })
 export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @ViewChild('slider') sliderRef: ElementRef
+  @ViewChild(SwiperDirective) slider: SwiperDirective;
   @ViewChildren('slide') slides: QueryList<ElementRef>;
+
   private openBigPhoto: EventEmitter<any> = new EventEmitter();
 
-  slider: MaterialSlider
+  
   slidesInstance: any
   user: User = {}
   sliderCheck: boolean = false
@@ -31,13 +36,16 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
 
   photos: Photo[] = []
 
-
+  config: SwiperConfigInterface = {
+    navigation: true,
+    slidesPerView: 5
+  }
 
   constructor(
     private userServ: UserService,
     private route: ActivatedRoute,
     private router: Router,
-
+    private material: Material
   ) { }
 
   ngOnInit() {
@@ -60,20 +68,12 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.initSLider()
+    
   }
   ngOnDestroy() {
-    if (this.slider) {
-      this.slider.destroy()
-    }
+    
   }
 
-  nextSlide() {
-    this.slider.next()
-  }
-  prevSlide() {
-    this.slider.prev()
-  }
   open(i: number) {
     this.openBigPhoto.emit({ index: i, photos: this.slides })
   }
@@ -101,15 +101,14 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
           photo.stars = this.formulaStar(photo.likes, photo.views)
           return photo
         })
-        this.initSLider()
         this.pending = false
       }, err => {
         this.pending = false
-        Material.toast('Пользователя с таким id не найдено')
+        this.material.openSnackBar('Пользователя с таким id не найдено')
         this.router.navigate(['choise'])
       }
-      
-      
+
+
       )
   }
   onPhotosUpload(event: any) {
@@ -131,37 +130,20 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
 
-  initSLider() {
-    this.sliderCheck = this.photos.length > 5
-    if (this.sliderCheck) {
-      setTimeout(() => this.slider = Material.initSlider(this.sliderRef), 50)
-    }
-  }
   deletePhoto(i: number) {
-    Material.toast('Удалено')
-    
+
     const photo = this.photos.find(photo => {
       return photo._id == this.photos[i]._id
     })
     this.photos.splice(i, 1)
-    if(this.slider){
-      this.slider.destroy()
-    }
-    this.initSLider()
-
+    this.slider.update()
     this.userServ.deletePhoto(photo._id)
       .pipe(untilDestroyed(this))
-      .subscribe(
-        res => { }
-        // error => console.log(error)
-      )
+      .subscribe()
   }
 
-  onPhotoLoad(photos: Photo[]){
+  onPhotoLoad(photos: Photo[]) {
     this.photos.push(...photos)
-    if(this.slider){
-      this.slider.destroy()
-    }
-    this.initSLider()
+    this.slider.update()
   }
 }

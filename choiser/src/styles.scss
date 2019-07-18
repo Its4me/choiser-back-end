@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-//@import '~materialize-css/sass/materialize.scss';
+@import '~swiper/dist/css/swiper.min.css';
 @import '~photoswipe/src/css/main.scss';
 @import '~photoswipe/dist/default-skin/default-skin.css';
 
@@ -153,7 +153,12 @@ a{
 .row .col[class*="push-"], .row .col[class*="pull-"] {
   position: relative;
 }
-
+.flex-center{
+  float: left;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 
 @media only screen and (min-width: 601px) {

@@ -1,3 +1,4 @@
+import { Material } from 'src/app/shared/classes/material';
 import { UserService } from './services/user.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,6 +17,7 @@ import { AuthGuard } from './classes/auth.guard';
     AuthCoreService,
     AuthGuard,
     UserService,
+    Material,
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,

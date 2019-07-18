@@ -6,6 +6,7 @@ import { FillPipe } from './array-fill.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
+import { SwiperModule } from 'ngx-swiper-wrapper';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    SwiperModule
   ]
 })
 export class UserModule { }

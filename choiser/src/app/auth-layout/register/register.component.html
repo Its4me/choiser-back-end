@@ -5,6 +5,7 @@
     <input  
       matInput 
       type="text"
+      placeholder="Email"
       formControlName="email"
       [ngClass]="{'invalid': form.get('email').invalid && form.get('email').touched}">
     <mat-error  class="helper-text red-text" *ngIf="form.get('email').errors && form.get('email').touched">
@@ -20,6 +21,7 @@
     <input 
       type="text" 
       formControlName="nickname"
+      placeholder="Ник"
       matInput
       [ngClass]="{'invalid': form.get('nickname').invalid && form.get('nickname').touched}">
     <mat-error  class="helper-text red-text" *ngIf="form.get('nickname').errors && form.get('nickname').touched">
@@ -37,6 +39,7 @@
       type="password"
       formControlName="password"
       matInput
+      placeholder="Пароль"
       [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}">
     <mat-error  class="helper-text red-text" *ngIf="form.get('password').errors && form.get('password').touched">
       <span *ngIf="form.get('password').errors.required">
@@ -56,8 +59,8 @@
     >Регистрация
   </button>
   <ng-template #load>
-    <div class="center">
-      <app-loader></app-loader>
+    <div class="flex-center">
+      <mat-spinner diameter="38"></mat-spinner>
     </div>
 
   </ng-template>

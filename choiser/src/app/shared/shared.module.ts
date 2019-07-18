@@ -8,6 +8,9 @@ import { LoaderComponent } from './loader/loader.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatRadioModule} from '@angular/material/radio';
 @NgModule({
   declarations: [LoaderComponent],
   imports: [
@@ -21,7 +24,10 @@ import { MatListModule } from '@angular/material/list';
     LoaderComponent,
     MatButtonModule,
     MatInputModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule
   ]
 })
 export class SharedModule { }

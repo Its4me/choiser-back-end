@@ -3,7 +3,8 @@
   height: 250px;
   &-item{
     height: 100%;
-    opacity: 1!important;
+    width: 20%;
+    position: relative;
     img{
       height: 100%;
       width: 100%;
@@ -12,18 +13,27 @@
     &:hover .item-bottom-panel{
       bottom: 0;
     }
-    &:hover .delete{
-      opacity: 1;
-      visibility: visible;
-    }
+    
   }
-  
+}
+.carousel-item{
+
+ 
+  &:hover .delete{
+    opacity: 1;
+
+    visibility: visible;
+  }
 }
 .carousel-wrapper{
   width: 100%;
   height: 250px;
+  max-width: 100%;
   float: left;
   position: relative;
+}
+.swiper-wrapper{
+  height: 100%;
 }
 
 .arrow{
@@ -31,12 +41,6 @@
   position: absolute;
   top: 100px;
   z-index: 50;
-}
-.a-left{
-  left: 0;
-}
-.a-right{
-  right: 0;
 }
 
 .item-bottom-panel{
@@ -90,23 +94,16 @@
   display: flex;
   justify-content: space-between;
   flex: 0 0 120px;
+  i{
+    font-size: 1.5rem;
+  }
 }
 strong{
   font-weight: 700;
 }
-.noSlider{
-  position: relative;
-  float: left;
-  visibility: visible;
-  transform: translateX(0px)!important;
-}
 .flex-block{
   display: flex;
   justify-content: space-around;
-}
-.info-name{
-  width: 100%;
-  float: left;
 }
 .info-text{
   padding: 0.75rem;
@@ -127,13 +124,13 @@ strong{
   float: left;
   width: 100%;
 }
-.w100{
-  width: 100%;
-}
 .bigLoader{
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.d-none{
+  display: none;
 }

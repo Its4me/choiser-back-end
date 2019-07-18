@@ -1,10 +1,9 @@
+import { Material } from 'src/app/shared/classes/material';
 import { UserService } from '../../core/services/user.service';
 import { FormBuilder } from '@angular/forms';
 import { User } from './../../shared/interfaces';
 import { AuthCoreService } from './../../core/services/authCore.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
-import { Material } from 'src/app/shared/classes/material';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
@@ -33,7 +32,8 @@ export class EditUserComponent implements OnInit, OnDestroy {
   constructor(
     private auth: AuthCoreService,
     private fb: FormBuilder,
-    private userServ: UserService
+    private userServ: UserService,
+    private material: Material
   ) { }
 
   ngOnInit() { 
@@ -45,7 +45,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
           user => {
             this.initForm(user)
           },
-          err => Material.toast('Ошибка хз что случилось ' + err)
+          err => console.log( 'Ошибка хз что случилось ' + err)
         )
     }else {
       this.user = this.auth.getUser()
@@ -67,8 +67,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
       nickname: user.nickname,
       sex: user.sex
     })
-  
-    Material.updateInputs()
   }
 
   onSubmit(){
@@ -77,10 +75,10 @@ export class EditUserComponent implements OnInit, OnDestroy {
       .pipe(untilDestroyed(this))
       .subscribe( 
         res => { 
-          Material.toast('Сохранено')
+          this.material.openSnackBar('Сохранено')
           this.loading = false
         }, err => {
-          Material.toast('Ошибка:' + err)
+          console.log('Ошибка:' + err)
           this.loading = false
         }
       )
