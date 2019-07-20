@@ -1,0 +1,16 @@
+<div class="photo-wrapper">
+  <img [src]="photo.photo" alt="" (click)="vote()">
+  <div class="menu">
+    <button mat-icon-button [matMenuTriggerFor]="photoMenu">
+      <i class="fas fa-ellipsis-v"></i>
+    </button>
+    <mat-menu #photoMenu="matMenu">
+      <button mat-menu-item>
+        Нет человека
+      </button>
+      <button mat-menu-item>
+        Не приемлемое фото
+      </button>
+    </mat-menu>
+  </div>
+</div>

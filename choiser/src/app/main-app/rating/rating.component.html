@@ -1,3 +1,64 @@
-<p>
-  rating works!
-</p>
+<section>
+  <h2 class="center">Рейтинг</h2>
+  <ng-container *ngIf="user &&  regions$ | async; else loader">
+    <div class="control">
+      <div class="region">
+        <mat-form-field>
+          <mat-label>Область</mat-label>
+          <mat-select [(ngModel)]="user.region">
+            <mat-option *ngFor="let region of regions$ | async" [value]="region.name">
+              {{region.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="sex">
+          <div class="hidden" >
+            <input type="radio" value="female" #female name="sex" [checked]="user.sex == 'female'">
+            <input type="radio" value="male" #male name="sex" [checked]="user.sex == 'male'">
+          </div>
+
+
+        <span>Пол</span>
+        <button 
+          class="female" 
+          mat-icon-button 
+          (click)="female.click()"
+          [ngClass]="{'active': female.checked}"
+          >
+          <i class="fas fa-female"></i>
+        </button>
+        <button 
+          class="male" 
+          mat-icon-button 
+          (click)="male.click()"
+          [ngClass]="{'active': male.checked}">
+          <i class="fas fa-male"></i>
+        </button>
+
+       
+      </div>
+      <div class="panel">
+        <button class="male" mat-icon-button (click)="refresh()">
+          <i class="fas fa-redo-alt"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="example-container mat-elevation-z8">
+      <app-table [region]="user.region" [sex]="user.sex"></app-table>
+    </div>
+  </ng-container>
+
+
+  <ng-template #loader>
+    <div class="bigLoader">
+      <div class="flex-center">
+        <mat-spinner diameter="50"></mat-spinner>
+      </div>
+    </div>
+  </ng-template>
+
+
+</section>

@@ -4,15 +4,19 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LoaderComponent } from './loader/loader.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+
 @NgModule({
-  declarations: [LoaderComponent],
+  declarations: [],
   imports: [
     CommonModule
   ],
@@ -21,13 +25,16 @@ import {MatRadioModule} from '@angular/material/radio';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    LoaderComponent,
     MatButtonModule,
     MatInputModule,
     MatListModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatRadioModule
+    MatRadioModule,
+    MatAutocompleteModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatTableModule
   ]
 })
 export class SharedModule { }

@@ -19,7 +19,9 @@
       <input matInput type="text" formControlName="lastname">
     </mat-form-field>
 
-    <app-region-choise [region]="user.region" [city]="user.city"></app-region-choise>
+    <app-region-choise [(location)]="location" [(errors)]='regionErrors' [updateForm]="updateForm">
+       
+    </app-region-choise>
 
 
     <mat-radio-group class="d-flex" formControlName="sex">

@@ -1,0 +1,32 @@
+.control{
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+.sex {
+  span{
+    margin-right: .75rem;
+  }
+}
+.male.active{
+  color: rgb(1, 1, 214);
+}
+.female.active{
+  color: #f20d46;
+}
+button i{
+  font-size: 1.5rem;
+}
+.hidden{
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+}
+.panel, .sex{
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+.control div{
+  width: 200px;
+}

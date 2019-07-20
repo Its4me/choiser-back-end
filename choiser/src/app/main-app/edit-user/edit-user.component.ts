@@ -3,7 +3,7 @@ import { UserService } from '../../core/services/user.service';
 import { FormBuilder } from '@angular/forms';
 import { User } from './../../shared/interfaces';
 import { AuthCoreService } from './../../core/services/authCore.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
@@ -13,9 +13,17 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 })
 export class EditUserComponent implements OnInit, OnDestroy {
 
-  user: User = {
+  updateForm: EventEmitter<any> = new EventEmitter();
+
+
+  location: User = {
     region: '',
     city: ''
+  }
+
+  regionErrors = {
+    region: false,
+    city: false
   }
   
   loading = false
@@ -36,7 +44,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
     private material: Material
   ) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     if (Object.keys(this.auth.getUser()).length == 0) {
       const _id = this.auth.getId()
       this.userServ.getUserFromBack(_id)
@@ -45,16 +53,16 @@ export class EditUserComponent implements OnInit, OnDestroy {
           user => {
             this.initForm(user)
           },
-          err => console.log( 'Ошибка хз что случилось ' + err)
+          err => console.log('Ошибка хз что случилось ' + err)
         )
-    }else {
-      this.user = this.auth.getUser()
-      this.initForm(this.user)
+    } else {
+      this.location = this.auth.getUser()
+      this.initForm(this.location)
     }
 
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
 
   }
 
@@ -67,14 +75,20 @@ export class EditUserComponent implements OnInit, OnDestroy {
       nickname: user.nickname,
       sex: user.sex
     })
+    this.location.region = user.region
+    this.location.city = user.city
+    this.updateForm.emit()
   }
 
-  onSubmit(){
+  onSubmit() {
     this.loading = true
-    this.userServ.editUser(this.form.value)
+  
+    const newUser = Object.assign({},this.form.value, this.location)
+    
+    this.userServ.editUser(newUser)
       .pipe(untilDestroyed(this))
-      .subscribe( 
-        res => { 
+      .subscribe(
+        res => {
           this.material.openSnackBar('Сохранено')
           this.loading = false
         }, err => {

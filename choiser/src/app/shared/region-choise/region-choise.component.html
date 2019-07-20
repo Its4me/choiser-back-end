@@ -3,18 +3,51 @@
   <mat-form-field class="input-field col s12 m6">
     <input 
       formControlName="region" 
-      placeholder="Регион"
+      placeholder="Область"
       type="text"
       autocomplete="off" 
       matInput
+      [matAutocomplete]="regionRef"
+      (blur)="checkRegion()"
     >
-<!-- <span *ngIf="form.get(region).errors">
-       Выберите регион из списка
-    </span> -->
+
+      <mat-autocomplete #regionRef="matAutocomplete">
+        <mat-option 
+          *ngFor="let region of regionsAutoComplete$ | async" 
+          [value]="region.name"
+          (click)="checkRegion()"
+          >
+          {{region.name}}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="form.get('region').errors">
+        Выберите область из списка
+      </mat-error>
     </mat-form-field>
     
 
   <mat-form-field class="input-field col s12 m6">
-    <input  placeholder="Город" matInput formControlName="city" type="text" autocomplete="off" >
+    <input 
+      placeholder="Город"
+      matInput 
+      formControlName="city" 
+      type="text" 
+      autocomplete="off" 
+      [matAutocomplete]="cityRef"
+      (focus)="uploadCities()"
+      (blur)="checkCity()"
+      >
+
+    <mat-autocomplete #cityRef="matAutocomplete">
+      <mat-option 
+        (click)="checkCity()"
+        *ngFor="let city of citiesAutoComplete" 
+        [value]="city.name">
+        {{city.name}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="form.get('city').errors">
+      Выберите город из списка
+    </mat-error>
   </mat-form-field>
 </form>

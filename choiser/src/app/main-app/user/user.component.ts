@@ -9,8 +9,7 @@ import { UserService } from '../../core/services/user.service';
 import { forkJoin } from 'rxjs';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { untilDestroyed } from 'ngx-take-until-destroy';
-import { SwiperComponent, SwiperDirective, SwiperConfigInterface,
-  SwiperScrollbarInterface, SwiperPaginationInterface } from 'ngx-swiper-wrapper';
+import {  SwiperDirective, SwiperConfigInterface  } from 'ngx-swiper-wrapper';
 
 
 @Component({
@@ -82,11 +81,11 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   formulaStar(likes, views): number {
     const percent = likes * 100 / views
     switch (true) {
-      case (percent < 35): return 1
-      case (percent < 45): return 2
-      case (percent < 50): return 3
-      case (percent < 55): return 4
-      case (percent >= 55): return 5
+      case (percent < 20): return 1
+      case (percent < 40): return 2
+      case (percent < 55): return 3
+      case (percent < 70): return 4
+      case (percent >= 70): return 5
     }
   }
 
