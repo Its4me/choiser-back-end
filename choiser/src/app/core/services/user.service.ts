@@ -29,5 +29,7 @@ export class UserService {
   editUser(user: User): Observable<User> {
     return this.http.patch(`api/user`, user)
   }
-
+  editAvatar(data): Observable<User>{
+    return this.http.patch<User>('api/user/avatar', data)
+  }
 }

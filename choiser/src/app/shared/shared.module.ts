@@ -14,7 +14,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [],
   imports: [
@@ -34,7 +34,8 @@ import { MatTableModule } from '@angular/material/table';
     MatAutocompleteModule,
     MatMenuModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

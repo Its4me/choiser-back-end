@@ -35,3 +35,10 @@ export interface Photo {
   likes?: number
   stars?: number
 }
+
+export interface RatingParams {
+  skip?: number,
+  limit?: number
+  region?: string
+  sex?: string
+}

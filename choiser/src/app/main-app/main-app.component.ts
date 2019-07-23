@@ -1,3 +1,5 @@
+import { AuthCoreService } from './../core/services/authCore.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,7 +14,7 @@ export class MainAppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+   
  
   }
 

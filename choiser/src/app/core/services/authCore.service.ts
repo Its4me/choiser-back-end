@@ -11,10 +11,6 @@ export class AuthCoreService {
   private user: User = {}
 
 
-  isLogined(): boolean {
-    return this.auth.token != ''
-  }
-
   getToken(): string {
     return this.auth.token
   }

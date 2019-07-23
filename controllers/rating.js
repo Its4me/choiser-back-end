@@ -4,10 +4,8 @@ const User = require('../modeles/User')
 module.exports.getRating = async function (req, res) {
 
   try {
-    console.log(req.query)
-    
     const users = await User
-      .find({ region: req.query.region })
+      .find({ region: req.query.region, sex: req.query.sex })
       .sort({ rating: -1, views: 1 })
       .skip(+req.query.skip)
       .limit(+req.query.limit)

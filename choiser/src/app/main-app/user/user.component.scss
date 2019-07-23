@@ -134,3 +134,26 @@ strong{
 .d-none{
   display: none;
 }
+.wrapper-avatar{
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  &:hover .edit-avatar{
+    bottom: 0;
+    cursor: pointer;
+  }
+}
+.edit-avatar{
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 100%;
+  position: absolute;
+  bottom: -100%;
+  transition: all 0.4s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: #fff;
+  font-size: 2rem;
+
+}

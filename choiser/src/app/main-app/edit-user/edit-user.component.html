@@ -12,11 +12,11 @@
     </mat-form-field>
 
     <mat-form-field class="input-field col s12 m6">
-      <input matInput type="text" formControlName="name">
+      <input placeholder="Имя" matInput type="text" formControlName="name">
     </mat-form-field>
 
     <mat-form-field class="input-field col s12 m6">
-      <input matInput type="text" formControlName="lastname">
+      <input placeholder="Фамилия" matInput type="text" formControlName="lastname">
     </mat-form-field>
 
     <app-region-choise [(location)]="location" [(errors)]='regionErrors' [updateForm]="updateForm">

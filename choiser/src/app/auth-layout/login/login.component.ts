@@ -40,6 +40,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.auth.login(this.form.value)
       .pipe(untilDestroyed(this))
       .subscribe(res => {
+        
+        
         this.router.navigate(['choise'])
       },
         (err: HttpErrorResponse )=> {

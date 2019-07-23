@@ -1,0 +1,27 @@
+<div mat-dialog-content *ngIf="photo">
+  <div class="img-wrapper">
+    <div class="big-img">
+      <img [src]="photo.photo" alt="">
+    </div>
+    <div class="small-img">
+      <img [src]="photo.photo" alt="">
+    </div>
+  </div>
+
+  <p>
+    Желательно квадратное фото, но дело ваше
+    <br>
+    Это просто аватар и он в рейтинги не попадет, так что можете загрузить
+    и котика)
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button *ngIf="!loader" mat-button (click)="cancel()">Отмена</button>
+  <button *ngIf="!loader" mat-flat-button color="primary" (click)="saveAvatar()" cdkFocusInitial>Сохранить</button>
+  <ng-container *ngIf="loader">
+    <div class="flex-center">
+      <mat-spinner diameter="38"></mat-spinner>
+    </div>
+  </ng-container>
+
+</div>

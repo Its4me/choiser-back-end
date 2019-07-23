@@ -3,14 +3,21 @@
   <ng-container *ngIf="!pending; else bigLoader">
     <div class="header">
       <div class="wrapper-avatar">
-        <img *ngIf="user.avatar" class="circle" src="user.avatar" alt="">
-        <img *ngIf="!user.avatar" class="circle" src="assets/noMan.jpg" alt="">
+        <img 
+          class="circle" 
+          [src]="user.avatar? user.avatar : 'assets/noMan.jpg'" 
+          alt=""
+          >
+          <div *ngIf="itsMe" class="edit-avatar" (click)="avatarEdit.click()">
+            <i class="fas fa-camera"></i>
+          </div>
+          <input class="d-none" type="file" #avatarEdit (change)="editAvatar($event)">
       </div>
       <div class="header-text">
         <div class="nickname">{{user.nickname}}</div>
         <div class="rating">Рейтинг: <strong>{{user.rating | number:'1.1-4'}}</strong></div>
       </div>
-      <div class="menu">
+      <div class="menu" >
         <a mat-fab color="primary" routerLink="/edit/user">
           <i class="fas fa-user-edit"></i>
         </a>
@@ -20,15 +27,22 @@
         <input #input (change)="onPhotosUpload($event)" class="none" type="file" multiple>
       </div>
     </div>
-    <div [swiper]="config" class="carousel-wrapper swiper-container" [ngClass]="{'d-none': uploadPhotos.length > 0 || photos.length < 1}">
+    <div 
+      [swiper]="config" 
+      class="carousel-wrapper swiper-container" 
+      [ngClass]="{'d-none': uploadPhotos.length > 0 || photos.length < 1}"
+      >
       <div class="swiper-wrapper">
         <a *ngFor="let photo of photos;let i = index" class="carousel-item swiper-slide">
           <img [src]="photo.photo" (click)="open(i)" #slide alt="">
-          <div class="item-bottom-panel" *ngIf="photo.stars">
+          <div class="item-bottom-panel" *ngIf="photo.stars && itsMe">
             <i *ngFor="let star of photo.stars | fill" class="fas fa-star"></i>
             <i *ngFor="let star of photo.stars | fill:true" class="far fa-star"></i>
           </div>
-          <button mat-mini-fab color="white" (click)="deletePhoto(i)"
+          <button 
+            *ngIf="itsMe"
+            mat-mini-fab color="white" 
+            (click)="deletePhoto(i)"
             class="btn-floating btn-small waves-effect waves-light white delete">
             <i class="fas fa-times "></i>
           </button>

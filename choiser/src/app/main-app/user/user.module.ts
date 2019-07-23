@@ -7,18 +7,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { SwiperModule } from 'ngx-swiper-wrapper';
+import { AvatarPopUpComponent } from './avatar-pop-up/avatar-pop-up.component';
 
 @NgModule({
   declarations: [
     FillPipe,
     UserComponent,
     PhotoswiperComponent,
-    UploadPhotoComponent
+    UploadPhotoComponent,
+    AvatarPopUpComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     SwiperModule
-  ]
+  ],
+  exports: [AvatarPopUpComponent],
+  entryComponents: [AvatarPopUpComponent]
 })
 export class UserModule { }

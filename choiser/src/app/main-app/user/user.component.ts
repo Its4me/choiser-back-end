@@ -1,5 +1,7 @@
+import { AvatarPopUpComponent } from './avatar-pop-up/avatar-pop-up.component';
+import { AuthCoreService } from './../../core/services/authCore.service';
 import { Material } from 'src/app/shared/classes/material';
-import { MaterialSlider, User, Photo } from './../../shared/interfaces';
+import { User, Photo } from './../../shared/interfaces';
 
 import {
   Component, OnInit, ViewChild, ElementRef,
@@ -9,7 +11,8 @@ import { UserService } from '../../core/services/user.service';
 import { forkJoin } from 'rxjs';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { untilDestroyed } from 'ngx-take-until-destroy';
-import {  SwiperDirective, SwiperConfigInterface  } from 'ngx-swiper-wrapper';
+import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -17,17 +20,16 @@ import {  SwiperDirective, SwiperConfigInterface  } from 'ngx-swiper-wrapper';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
+export class UserComponent implements OnInit, OnDestroy {
 
   @ViewChild(SwiperDirective) slider: SwiperDirective;
   @ViewChildren('slide') slides: QueryList<ElementRef>;
 
   private openBigPhoto: EventEmitter<any> = new EventEmitter();
 
-  
+  itsMe: boolean = false
   slidesInstance: any
   user: User = {}
-  sliderCheck: boolean = false
 
   photoFile: File[] = []
   uploadPhotos: Photo[] = []
@@ -44,7 +46,9 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
     private userServ: UserService,
     private route: ActivatedRoute,
     private router: Router,
-    private material: Material
+    private material: Material,
+    private authService: AuthCoreService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -53,24 +57,15 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
       .pipe(untilDestroyed(this))
       .subscribe(params => {
         this.user._id = params.id
+        this.itsMe = this.authService.getId() == this.user._id
         this.getUserPage()
       }, err => {
         this.pending = false
       })
-    // this.router.events
-    //   .pipe(untilDestroyed(this))
-    //   .subscribe((params) => {
-    //     if (params instanceof NavigationEnd) {
-    //       console.log(params);
-    //     }
-    //   });
   }
 
-  ngAfterViewInit() {
-    
-  }
   ngOnDestroy() {
-    
+
   }
 
   open(i: number) {
@@ -144,5 +139,12 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   onPhotoLoad(photos: Photo[]) {
     this.photos.push(...photos)
     this.slider.update()
+  }
+
+  editAvatar(event: any) {
+    const dialogRef = this.dialog.open(AvatarPopUpComponent, { 
+      autoFocus: false,
+      data: event 
+    })
   }
 }

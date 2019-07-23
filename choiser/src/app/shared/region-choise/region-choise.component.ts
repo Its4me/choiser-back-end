@@ -135,7 +135,7 @@ export class RegionChoiseComponent implements OnInit, OnDestroy {
   }
 
   private _filter(value: string, array: any[]) {
-    const filterValue = value.toLowerCase()
+    const filterValue = value? value.toLowerCase() : ''
     return array.filter(state => state.name.toLowerCase().includes(filterValue))
   }
 }
