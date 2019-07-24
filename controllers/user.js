@@ -16,7 +16,7 @@ module.exports.editUser = async function (req, res) {
   try {
 
     const checkUser = await User.find({ nickname: req.body.nickname })
-    if (checkUser){
+    if (checkUser[0]._id != req.user._id){
       res.status(409).json({
         success: false,
         message: 'Ник уже занят'

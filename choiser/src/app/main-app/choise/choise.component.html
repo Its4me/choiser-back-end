@@ -1,13 +1,21 @@
 <section>
     <h2 class="center">Выбирай с умом</h2>
     <div class="choise" *ngIf="photos$ | async as photos; else loader">
-        <div class="choise-photo">
-            <choise-photo (onVote)="onVote($event)" [photo]="photos.photos[0]"></choise-photo>
-            <choise-photo (onVote)="onVote($event)" [photo]="photos.photos[1]"></choise-photo>
-        </div>
-        <div class="button-wrapper">
-            <button (click)="skip()" mat-raised-button color="primary">Пропустить</button>
-        </div>
+
+        <ng-container *ngIf="photos.photos.length >= 2; else noPhoto">
+            <div class="choise-photo">
+                <choise-photo (onVote)="onVote($event)" [photo]="photos.photos[0]"></choise-photo>
+                <choise-photo (onVote)="onVote($event)" [photo]="photos.photos[1]"></choise-photo>
+            </div>
+            <div class="button-wrapper">
+                <button (click)="skip()" mat-raised-button color="primary">Пропустить</button>
+            </div>
+        </ng-container>
+        <ng-template #noPhoto>
+            <p class="center">Пока не хватает пользователей, зовите друзей и играйте)</p>
+        </ng-template>
+        
+
     </div>
     <ng-template #loader>
         <div class="center">

@@ -92,7 +92,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
           this.material.openSnackBar('Сохранено')
           this.loading = false
         }, err => {
-          console.log('Ошибка:' + err)
+          console.log('Ошибка:' + err.message)
           this.loading = false
         }
       )
