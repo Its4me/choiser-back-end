@@ -22,6 +22,8 @@ router.patch('/avatar',
   upload.single('avatar'), 
   controller.editAvatar 
 )
-
+router.patch('/check-nickname',
+  controller.checkNickname 
+)
 module.exports = router
  

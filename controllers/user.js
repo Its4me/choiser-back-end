@@ -14,6 +14,16 @@ module.exports.getUser = async function (req, res) {
 
 module.exports.editUser = async function (req, res) {
   try {
+
+    const checkUser = await User.find({ nickname: req.body.nickname })
+    if (checkUser){
+      res.status(409).json({
+        success: false,
+        message: 'Ник уже занят'
+      })
+      return
+    }
+    
     const updateData = req.body
     const user = await User.findByIdAndUpdate(
       req.user._id,
@@ -29,6 +39,14 @@ module.exports.editUser = async function (req, res) {
 module.exports.deleteUser = async function (req, res) {
   try {
     const user = await User.findById(req.params.id)
+
+    if( ! await chechAccess(user._id, req, res) ){
+      res.status(423).json({
+        message: 'Нет прав'
+      })
+      return
+    }
+   
     const photos = await Photo.find({ userId: req.params.id }).select('key')
 
     for (let i = 0; i < photos.length; i++) {
@@ -89,4 +107,38 @@ module.exports.editAvatar = async function (req, res) {
   } catch (e) {
     errorHandler(res, e)
   }
+}
+module.exports.checkNickname = async function (req, res) {
+  try {
+    const user = await User.find({ nickname: req.body.nickname })
+    if (user){
+      res.status(409).json({
+        success: false,
+        message: 'Ник уже занят'
+      })
+      return
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Ник свободен'
+    })
+  }
+  catch(e){
+    errorHandler(res, e)
+  }
+}
+
+async function chechAccess(_id, req, res){
+  const check = `${_id}` == `${req.user._id}`
+  let checkAdmin = false
+  
+  if(!check){
+    const user = await User.findById(req.user._id)
+    if(user){
+      checkAdmin = user.admin == true? true : false
+    }
+  }
+  
+  return (checkAdmin || check)
+  
 }

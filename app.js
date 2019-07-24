@@ -18,6 +18,7 @@ mongoose.set('useFindAndModify', false)
 
 app.use(bodyParcer.urlencoded(({ extended: true })));
 app.use(bodyParcer.json())
+
 app.use(require('cors')())
 app.use(passport.initialize())
 require('./middleware/passport')(passport)

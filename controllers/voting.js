@@ -6,7 +6,17 @@ module.exports.getPhotos = async function (req, res) {
 
   try {
 
-    const users = await User.find({ selectable: true }, '_id')
+    const user = await User.findById(req.user.id)
+    const userSex = user.sex? (user.sex == 'male'? 'female' : 'male') : ''
+
+    const users = await User.find({ 
+      selectable: true,
+      region: user.region? user.region : '',
+      sex: userSex,
+      _id: { $ne: req.user.id }
+      }, 
+      '_id'
+    )
       .sort({ views: 1 })
       .limit(2)
 

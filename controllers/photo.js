@@ -44,12 +44,38 @@ module.exports.uploadPhoto = async function (req, res) {
 }
 module.exports.deletePhoto = async function (req, res) {
   try {
+    
+    const photo = await Photo.findById(req.params.photoId)
+    
+    const check = `${photo.userId}` == `${req.user._id}`
+    let checkAdmin = false
+    
+    if(!check){
+      const user = await User.findById(req.user._id)
+      if(user){
+        checkAdmin = user.admin == true? true : false
+      }
+    }
+    
+    if(checkAdmin && !check){
+      res.status(423).json({
+        message: 'Нет прав'
+      })
+      return;
+    }
 
-    const photo = await Photo.findByIdAndDelete(req.params.photoId)
+    await Photo.findByIdAndDelete(req.params.photoId)
+
     if (photo) {
-      deleteImageFromS3(photo.key, (err) => {
+      deleteImageFromS3(photo.key, async (err) => {
         if (err == null) {
-          res.sendStatus(200)
+          const photos = await Photo.find({ userId: photo.userId })
+          
+          if (photos.length == 0) {
+            await User.findByIdAndUpdate(photo.userId, { selectable: false })
+          }
+          
+          res.status(200).json({success: true})
         } else {
           res.status(400).json({
             message: 'Ошибка: Фото не удалено с S3'
@@ -57,7 +83,12 @@ module.exports.deletePhoto = async function (req, res) {
         }
 
       })
+
+
+    }else {
+      res.status(404).json({message: 'Фото не найдено'})
     }
+
 
   } catch (e) {
     res.status(404).json({
