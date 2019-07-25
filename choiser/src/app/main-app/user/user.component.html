@@ -17,7 +17,7 @@
         <div class="nickname">{{user.nickname}}</div>
         <div class="rating">Рейтинг: <strong>{{user.rating | number:'1.1-4'}}</strong></div>
       </div>
-      <div class="menu" >
+      <div class="menu" *ngIf="itsMe">
         <a mat-fab color="primary" routerLink="/edit/user">
           <i class="fas fa-user-edit"></i>
         </a>

@@ -2,7 +2,7 @@
   <h4>Choiser</h4>
 
 
-  <div class="user-view" *ngIf="user$ | async as user">
+  <div class="user-view" *ngIf="user">
     <a [routerLink]="[ '/user', user._id ]">
       <img *ngIf="user.avatar" class="circle" [src]="user.avatar">
       <img *ngIf="!user.avatar" class="circle" src="assets/noMan.jpg">

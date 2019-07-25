@@ -1,4 +1,4 @@
-import { Material } from 'src/app/shared/classes/material';
+import { Material } from './../../shared/classes/material';
 import { UserService } from '../../core/services/user.service';
 import { FormBuilder } from '@angular/forms';
 import { User } from './../../shared/interfaces';
@@ -52,12 +52,12 @@ export class EditUserComponent implements OnInit, OnDestroy {
         .subscribe(
           user => {
             this.initForm(user)
+            this.auth.setUser(user)
           },
           err => console.log('Ошибка хз что случилось ' + err)
         )
     } else {
-      this.location = this.auth.getUser()
-      this.initForm(this.location)
+      this.initForm(this.auth.getUser())
     }
 
   }
@@ -89,10 +89,11 @@ export class EditUserComponent implements OnInit, OnDestroy {
       .pipe(untilDestroyed(this))
       .subscribe(
         res => {
+          this.auth.setUser(res)
           this.material.openSnackBar('Сохранено')
           this.loading = false
         }, err => {
-          console.log('Ошибка:' + err.message)
+          this.material.openSnackBar(err.error.message)
           this.loading = false
         }
       )

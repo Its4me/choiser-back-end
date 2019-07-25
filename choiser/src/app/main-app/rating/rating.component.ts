@@ -36,7 +36,6 @@ export class RatingComponent implements OnInit, OnDestroy {
     } else {
       this.user = this.authCoreServ.getUser()
     }
-
     // get regions
     this.regions$ = this.ratingServ.getRegion()
 
@@ -53,7 +52,6 @@ export class RatingComponent implements OnInit, OnDestroy {
       sex: data.sex? data.sex :  this.user.sex,
       region: data.region? data.region :  this.user.region
     }
-
 
     this.onReload.next(params)
   }

@@ -63,6 +63,14 @@ export class RegionChoiseComponent implements OnInit, OnDestroy {
           })
         }
       )
+
+
+      
+      this.form.patchValue({
+        region: this.location.region,
+        city: this.location.city
+      })
+
       this.updateForm
         .pipe(untilDestroyed(this))
         .subscribe( res => {
@@ -70,6 +78,7 @@ export class RegionChoiseComponent implements OnInit, OnDestroy {
             region: this.location.region,
             city: this.location.city
           })
+         
       })
   }
 
