@@ -1,6 +1,6 @@
 <ng-container *ngIf="users">
 
-  <ng-container *ngIf="users.length > 1; else empty">
+  <ng-container *ngIf="users.length > 0; else empty">
     <table mat-table [dataSource]="users" class="rating-table">
 
       <ng-container matColumnDef="position">
@@ -12,7 +12,7 @@
         <th mat-header-cell *matHeaderCellDef> Аватар </th>
         <td mat-cell *matCellDef="let element">
           <a [routerLink]="'../user/' + element._id">
-            <img class="circle" [src]="element.avatar? element.avatar : 'assets/noMan.jpg'" alt="">
+            <img class="circle" [src]="element.avatar? element.avatar : 'assets/no-user.png'" alt="">
           </a>
         </td>
       </ng-container>

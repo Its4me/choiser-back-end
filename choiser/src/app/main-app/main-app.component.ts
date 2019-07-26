@@ -1,6 +1,7 @@
+import { User } from './../shared/interfaces';
 import { AuthCoreService } from './../core/services/authCore.service';
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-app',
@@ -9,13 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainAppComponent implements OnInit {
 
-  constructor(
+  user: User
+  aSub: Subscription
+  showStepper: boolean = false
 
+  constructor(
+    private authCoreServ: AuthCoreService
   ) { }
 
   ngOnInit() {
-   
+    this.aSub = this.authCoreServ.user$
+    .subscribe(user => {
+      if(!user.sex && !user.region && !user.lastname && !user.name){     
+        this.showStepper = true
+      }
+      this.aSub.unsubscribe()
+    })
+    
  
   }
-
+  onDataLoad(){
+    this.showStepper = false
+  }
 }

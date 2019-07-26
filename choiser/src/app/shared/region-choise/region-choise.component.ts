@@ -15,7 +15,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 export class RegionChoiseComponent implements OnInit, OnDestroy {
   @Input() location?: User = {}
   @Input() errors?
-  @Input() updateForm: EventEmitter<any>
+  @Input() updateForm?: EventEmitter<any>
 
   regions: any[] = []
   regionsAutoComplete$: Observable<any> 

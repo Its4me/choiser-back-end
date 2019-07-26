@@ -1,18 +1,24 @@
 import { User, RatingParams } from './../../shared/interfaces';
 import { UserService } from './../../core/services/user.service';
 import { AuthCoreService } from './../../core/services/authCore.service';
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { RatingService } from './rating.service';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rating',
   templateUrl: './rating.component.html',
   styleUrls: ['./rating.component.scss']
 })
-export class RatingComponent implements OnInit, OnDestroy {
+export class RatingComponent implements OnInit, AfterViewInit, OnDestroy {
+ @ViewChild('male') maleRef: ElementRef
+ @ViewChild('female') femaleRef: ElementRef
 
+
+  maleButton$
+  femaleButton$
   onReload: Subject<any> = new Subject();
 
   user: User
@@ -35,11 +41,21 @@ export class RatingComponent implements OnInit, OnDestroy {
         })
     } else {
       this.user = this.authCoreServ.getUser()
+      
     }
     // get regions
     this.regions$ = this.ratingServ.getRegion()
 
   }
+
+ngAfterViewInit(): void {
+  
+  
+  
+}
+    
+    
+  
   ngOnDestroy() { }
 
   refresh(data: RatingParams = {}, sex?: string) {
@@ -55,4 +71,9 @@ export class RatingComponent implements OnInit, OnDestroy {
 
     this.onReload.next(params)
   }
+
+  // buttonSubscribe(){
+  //   this.maleButton$ = fromEvent(this.maleRef.nativeElement, 'click')
+  //   this.maleButton$.pipe(debounceTime(3000)).subscribe(res => console.log('asdsda'))
+  // }
 }

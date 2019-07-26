@@ -4,8 +4,7 @@
 
   <div class="user-view" *ngIf="user">
     <a [routerLink]="[ '/user', user._id ]">
-      <img *ngIf="user.avatar" class="circle" [src]="user.avatar">
-      <img *ngIf="!user.avatar" class="circle" src="assets/noMan.jpg">
+      <img class="circle" [src]="user.avatar? user.avatar : 'assets/no-user.png'">
     </a>
     <a [routerLink]="[ '/user', user._id ]" class="text">
       <div class="nickname">{{user.nickname}}</div>

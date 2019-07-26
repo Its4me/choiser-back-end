@@ -1,0 +1,46 @@
+<div class="over">
+  <mat-horizontal-stepper [linear]="true" #stepper>
+
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Ваше имя и фамиля</ng-template>
+        <mat-form-field class="input-field col s12 m6">
+          <input matInput placeholder="Имя" formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field class="input-field col s12 m6">
+          <input matInput placeholder="Фамилия" formControlName="lastname" required>
+        </mat-form-field>
+        <div>
+          <button mat-flat-button color="primary" matStepperNext>Дальше</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Пол?</ng-template>
+        <div class="sex-container">
+          <mat-radio-group class="d-flex" formControlName="sex">
+            <mat-radio-button color="primary" value="male">Парень</mat-radio-button>
+            <mat-radio-button color="primary" value="female">Девушка</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        
+        <div>
+          <button mat-button matStepperPrevious>Назад</button>
+          <button mat-flat-button color="primary" matStepperNext>Дальше</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Регион</ng-template>
+      <app-region-choise [(location)]="location" [(errors)]='regionErrors' [updateForm]="updateForm">
+
+      </app-region-choise>
+      <button mat-button matStepperPrevious>Назад</button>
+      <button mat-flat-button color="primary" (click)="onSubmit()">Завершить</button>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+</div>

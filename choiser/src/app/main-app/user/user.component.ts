@@ -58,6 +58,9 @@ export class UserComponent implements OnInit, OnDestroy {
       .subscribe(params => {
         this.user._id = params.id
         this.itsMe = this.authService.getId() == this.user._id
+        if(this.itsMe){
+          this.authService.user$.subscribe(user => this.user = user)
+        }
         this.getUserPage()
       }, err => {
         this.pending = false

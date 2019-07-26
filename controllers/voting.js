@@ -74,7 +74,7 @@ module.exports.vote = async function (req, res) {
       { $inc: { rating: +rating } }
     )
 
-    res.sendStatus(200)
+    res.status(200).json({success: true})
   } catch (e) {
     errorHandler(res, e)
   }

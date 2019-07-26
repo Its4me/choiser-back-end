@@ -40,12 +40,12 @@ h4{
   font-family: 'Merienda', cursive;
   text-align: center;
   margin: 0;
-  color: #000;
+  color: #fff;
   padding: 1.52rem 0 0.912rem 0;
-  background: #5433FF;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #A5FECB, #20BDFF, #5433FF);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #A5FECB, #20BDFF, #5433FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
+  // background: #5433FF;  /* fallback for old browsers */
+  // background: -webkit-linear-gradient(to left, #A5FECB, #20BDFF, #5433FF);  /* Chrome 10-25, Safari 5.1-6 */
+  // background: linear-gradient(to left, #A5FECB, #20BDFF, #5433FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(120deg, #3498db, #8e44ad)
 }
 .sidenav .user-view{
   padding: 0.75rem;
