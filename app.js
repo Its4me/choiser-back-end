@@ -9,6 +9,7 @@ const photoRoutes = require('./routes/photo')
 const ratingRoutes = require('./routes/rating')
 const votingRoutes = require('./routes/voting')
 const userRoutes = require('./routes/user')
+const path = require('path')
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
   .then(() => console.log('mongoDB connected'))
