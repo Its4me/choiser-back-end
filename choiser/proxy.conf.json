@@ -1,9 +1,8 @@
 {
   "/api/*": {
-    "target": "https://choiser-back.herokuapp.com",
+    "target": "https://mchoiser.herokuapp.com",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
-    
   }
 }

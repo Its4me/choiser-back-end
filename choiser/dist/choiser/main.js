@@ -1406,7 +1406,9 @@ var NavbarComponent = /** @class */ (function () {
         this.auth = auth;
         this.userServ = userServ;
         this.router = router;
-        this.auth.user$.subscribe(function (user) { return _this.user = user; });
+        this.auth.user$
+            .pipe(Object(ngx_take_until_destroy__WEBPACK_IMPORTED_MODULE_6__["untilDestroyed"])(this))
+            .subscribe(function (user) { return _this.user = user; });
     }
     NavbarComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1698,7 +1700,7 @@ module.exports = "<ng-container *ngIf=\"users\">\n\n  <ng-container *ngIf=\"user
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "table {\n  width: 100%; }\n\n.circle {\n  width: 55px;\n  vertical-align: middle;\n  height: 55px; }\n\ntd.mat-cell {\n  vertical-align: middle; }\n\na {\n  color: #000;\n  float: left;\n  height: 70px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbWFpbi1hcHAvcmF0aW5nL3RhYmxlL0M6XFxVc2Vyc1xceWFyb3NcXERlc2t0b3BcXHdlYlxccHJvZFxcY2hvaXNlclxcY2hvaXNlci9zcmNcXGFwcFxcbWFpbi1hcHBcXHJhdGluZ1xcdGFibGVcXHRhYmxlLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsV0FBVyxFQUFBOztBQUViO0VBQ0UsV0FBVztFQUNYLHNCQUFzQjtFQUN0QixZQUFZLEVBQUE7O0FBRWQ7RUFDRSxzQkFBc0IsRUFBQTs7QUFFeEI7RUFDRSxXQUFXO0VBQ1gsV0FBVztFQUNYLFlBQVk7RUFDWixvQkFBYTtFQUFiLGFBQWE7RUFDYix5QkFBbUI7VUFBbkIsbUJBQW1CLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9tYWluLWFwcC9yYXRpbmcvdGFibGUvdGFibGUuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ0YWJsZXtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG4uY2lyY2xle1xyXG4gIHdpZHRoOiA1NXB4O1xyXG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XHJcbiAgaGVpZ2h0OiA1NXB4O1xyXG59XHJcbnRkLm1hdC1jZWxse1xyXG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XHJcbn1cclxuYXtcclxuICBjb2xvcjogIzAwMDtcclxuICBmbG9hdDogbGVmdDtcclxuICBoZWlnaHQ6IDcwcHg7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG59XHJcbiJdfQ== */"
+module.exports = "table {\n  width: 100%; }\n\n.circle {\n  width: 55px;\n  vertical-align: middle;\n  height: 55px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\ntd.mat-cell {\n  vertical-align: middle; }\n\na {\n  color: #000;\n  float: left;\n  height: 70px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbWFpbi1hcHAvcmF0aW5nL3RhYmxlL0M6XFxVc2Vyc1xceWFyb3NcXERlc2t0b3BcXHdlYlxccHJvZFxcY2hvaXNlclxcY2hvaXNlci9zcmNcXGFwcFxcbWFpbi1hcHBcXHJhdGluZ1xcdGFibGVcXHRhYmxlLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsV0FBVyxFQUFBOztBQUViO0VBQ0UsV0FBVztFQUNYLHNCQUFzQjtFQUN0QixZQUFZO0VBQ1osb0JBQWlCO0tBQWpCLGlCQUFpQixFQUFBOztBQUVuQjtFQUNFLHNCQUFzQixFQUFBOztBQUV4QjtFQUNFLFdBQVc7RUFDWCxXQUFXO0VBQ1gsWUFBWTtFQUNaLG9CQUFhO0VBQWIsYUFBYTtFQUNiLHlCQUFtQjtVQUFuQixtQkFBbUIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL21haW4tYXBwL3JhdGluZy90YWJsZS90YWJsZS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbInRhYmxle1xyXG4gIHdpZHRoOiAxMDAlO1xyXG59XHJcbi5jaXJjbGV7XHJcbiAgd2lkdGg6IDU1cHg7XHJcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcclxuICBoZWlnaHQ6IDU1cHg7XHJcbiAgb2JqZWN0LWZpdDogY292ZXI7XHJcbn1cclxudGQubWF0LWNlbGx7XHJcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcclxufVxyXG5he1xyXG4gIGNvbG9yOiAjMDAwO1xyXG4gIGZsb2F0OiBsZWZ0O1xyXG4gIGhlaWdodDogNzBweDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -2079,9 +2081,6 @@ var PhotoswiperComponent = /** @class */ (function () {
             subscribe(function (res) { return _this.open(res.index, res.photos); });
     };
     PhotoswiperComponent.prototype.ngOnDestroy = function () {
-        if (this.gallery) {
-            this.gallery.destroy();
-        }
     };
     PhotoswiperComponent.prototype.open = function (i, slides) {
         var _this = this;

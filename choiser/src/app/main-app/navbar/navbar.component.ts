@@ -22,7 +22,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private router: Router
   ) { 
 
-    this.auth.user$.subscribe(user => this.user = user)
+    this.auth.user$
+      .pipe(untilDestroyed(this))
+      .subscribe(user => this.user = user)
   }
 
   ngOnInit() {

@@ -25,9 +25,6 @@ export class PhotoswiperComponent implements OnInit, OnDestroy {
       )
   }
   ngOnDestroy() {
-    if (this.gallery) {
-      this.gallery.destroy()
-    }
   }
 
   open(i: number, slides) {
