@@ -32,7 +32,7 @@ app.use('/api/user', userRoutes)
 
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('./client/dist/client'))
+  app.use(express.static('./choiser/dist/choiser'))
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(
