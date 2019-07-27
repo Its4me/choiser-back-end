@@ -25,7 +25,7 @@ export class UserComponent implements OnInit, OnDestroy {
   @ViewChild(SwiperDirective) slider: SwiperDirective;
   @ViewChildren('slide') slides: QueryList<ElementRef>;
 
-  private openBigPhoto: EventEmitter<any> = new EventEmitter();
+  openBigPhoto: EventEmitter<any> = new EventEmitter();
 
   itsMe: boolean = false
   slidesInstance: any
