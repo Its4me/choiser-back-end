@@ -1,3 +1,6 @@
+section{
+  position: relative;
+}
 .carousel{
   width: 100%;
   height: 250px;
@@ -54,7 +57,7 @@
   transition: all 0.35s ease-in-out;
   i{
     color: white;
-    font-size: 0.8rem;
+    font-size: 0.8em;
   }
   
 }
@@ -76,26 +79,27 @@
 }
 .header-text{
   float: left;
-  margin-left: 0.75rem;
+  margin-left: 0.75em;
   display: flex;
   width: 100%;
   flex-wrap: wrap;
   align-content: center;
 }
 .nickname{
-  font-size: 1.7rem;
+  font-size: 1.7em;
   width: 100%;
 }
 .rating{
-  font-size: 1rem;
+  font-size: 1em;
   width: 100%;
 }
 .menu{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex: 0 0 120px;
   i{
-    font-size: 1.5rem;
+    font-size: 1.5em;
   }
 }
 strong{
@@ -106,12 +110,12 @@ strong{
   justify-content: space-around;
 }
 .info-text{
-  padding: 0.75rem;
+  padding: 0.75em;
 }
 .delete{
   position: absolute;
   right: 5px;
-  font-size: 1rem;
+  font-size: 1em;
   top: 5px;
   opacity: 0;
   visibility: hidden;
@@ -154,6 +158,81 @@ strong{
   align-items: center;
   width: 100%;
   color: #fff;
-  font-size: 2rem;
+  font-size: 2em;
+}
+.no-photos{
+  padding: .75em 0 0;
+}
+.user-nav-menu{
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 992px){
+  .header{
+    padding-left: calc(40px + .75rem)
+  }
+  button.menu-btn{
+    left: 6px;
+  }
+  .item-bottom-panel{
+    bottom: 0;
+  }
+  .delete{
+    opacity: 1;
+    visibility: visible;
+  }
+  
+}
+@media (max-width: 768px){
+  .carousel-wrapper{
+    height: 200px;
+  }
+}
+@media (max-width: 586px){
+  .swiper-button{
+    display: none;
+  }
+  .header{
+    background: linear-gradient(120deg, #3498db, #8e44ad);
+    color: #fff;
+    padding: 8px 8px 8px 40px;
+  }
+  .user-nav-menu{
+    background-color: transparent;
+    color: #fff;
+    box-shadow: none;
+  }
+  .header-text{
+    font-size: 13px;
+  }
+  .wrapper-avatar{
+    flex: 0 0 56px;
+    height: 56px;
+  }
+  button.menu-btn{
+    top: 16px;
+    left: 0;
+  }
+  .info-name{
+    font-size: 30px;
+    padding: 13px 0 13px;
+  }
+  .info-text{
+    font-size: 16px;
+    margin: 0;
+  }
+}
+@media (max-width: 480px){
+  .user-nav-menu{
+    font-size: 13px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .menu{
+    flex: 0 0 80px;
+  }
 
 }

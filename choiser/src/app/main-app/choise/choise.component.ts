@@ -1,3 +1,4 @@
+import { AppService } from './../app.service';
 import { Photo } from './../../shared/interfaces';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChoiseService } from './choise.service';
@@ -15,7 +16,8 @@ export class ChoiseComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private choiseServ: ChoiseService
+    private choiseServ: ChoiseService,
+    private appServ: AppService
   ) { }
 
   ngOnInit() {
@@ -32,5 +34,8 @@ export class ChoiseComponent implements OnInit, OnDestroy {
   skip(){
     this.photos$ = null
     this.photos$ = this.choiseServ.fetch()
+  }
+  openMenu(){
+    this.appServ.toggle()
   }
 }

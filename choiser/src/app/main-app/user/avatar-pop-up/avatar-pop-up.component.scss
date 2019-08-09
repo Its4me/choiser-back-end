@@ -26,3 +26,8 @@
   align-items: flex-end;
 
 }
+@media (max-width: 586px){
+  .big-img{
+    display: none;
+  }
+}

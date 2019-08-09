@@ -1,5 +1,7 @@
 <section>
-
+  <button mat-icon-button class="menu-btn" (click)="openMenu()">
+      <i class="fas fa-bars"></i>
+  </button>
   <ng-container *ngIf="!pending; else bigLoader">
     <div class="header">
       <div class="wrapper-avatar">
@@ -18,12 +20,24 @@
         <div class="rating">Рейтинг: <strong>{{user.rating | number:'1.1-4'}}</strong></div>
       </div>
       <div class="menu" *ngIf="itsMe">
-        <a mat-fab color="primary" routerLink="/edit/user">
+        <a 
+          matRipple
+          [matRippleColor]="white"
+          mat-fab 
+          class="user-nav-menu" 
+          color="primary" 
+          routerLink="/edit/user">
           <i class="fas fa-user-edit"></i>
         </a>
-        <button mat-fab color="primary" (click)="input.click()">
+        <a 
+          matRipple 
+          [matRippleColor]="white"
+          mat-fab 
+          class="user-nav-menu" 
+          color="primary" 
+          (click)="input.click()">
           <i class="fas fa-plus"></i>
-        </button>
+      </a>
         <input #input (change)="onPhotosUpload($event)" class="none" type="file" multiple>
       </div>
     </div>
@@ -34,7 +48,7 @@
       >
       <div class="swiper-wrapper">
         <a *ngFor="let photo of photos;let i = index" class="carousel-item swiper-slide">
-          <img [src]="photo.photo" (click)="open(i)" #slide alt="">
+          <img class="carousel-item-img" [src]="photo.photo" (click)="open(i)" #slide alt="">
           <div class="item-bottom-panel" *ngIf="photo.stars && itsMe">
             <i *ngFor="let star of photo.stars | fill" class="fas fa-star"></i>
             <i *ngFor="let star of photo.stars | fill:true" class="far fa-star"></i>
@@ -43,21 +57,21 @@
             *ngIf="itsMe"
             mat-mini-fab color="white" 
             (click)="deletePhoto(i)"
-            class="btn-floating btn-small waves-effect waves-light white delete">
+            class="delete">
             <i class="fas fa-times "></i>
           </button>
         </a>
       </div>
 
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      <div class="swiper-button swiper-button-prev"></div>
+      <div class="swiper-button swiper-button-next"></div>
     </div>
     <ng-container *ngIf="uploadPhotos.length > 0">
       <app-upload-photo [uploadPhotos]="uploadPhotos" [photoFile]="photoFile" (onPhotoLoad)="onPhotoLoad($event)">
       </app-upload-photo>
     </ng-container>
 
-    <div *ngIf="photos.length < 1 && uploadPhotos.length < 1" class="center">Фотографий пока нет</div>
+    <div *ngIf="photos.length < 1 && uploadPhotos.length < 1" class="center no-photos">Фотографий пока нет</div>
 
     <div class="info">
       <h2 class="info-name center">

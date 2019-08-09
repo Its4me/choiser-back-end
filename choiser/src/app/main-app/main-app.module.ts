@@ -1,3 +1,5 @@
+import { DeleteConfirmPopupComponent } from './edit-user/delete-confirm-popup/delete-confirm-popup.component';
+import { AppService } from './app.service';
 import { ChoiseModule } from './choise/choise.module';
 import { RegionModule } from './../shared/region-choise/region.module';
 import { SharedModule } from './../shared/shared.module';
@@ -16,7 +18,8 @@ import { StepperComponent } from './stepper/stepper.component';
   declarations: [
     MainAppComponent,
     EditUserComponent,
-    StepperComponent
+    StepperComponent,
+    DeleteConfirmPopupComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +29,8 @@ import { StepperComponent } from './stepper/stepper.component';
     RegionModule,
     ChoiseModule,
     RatingModule
-  ]
+  ],
+  entryComponents: [DeleteConfirmPopupComponent],
+  providers: [AppService]
 })
 export class MainAppModule { }

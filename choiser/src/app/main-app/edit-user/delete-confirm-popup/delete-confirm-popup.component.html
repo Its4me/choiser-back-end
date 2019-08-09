@@ -1,0 +1,13 @@
+<div mat-dialog-content>
+  <p mat-dialog-title>Вы уверены что хотите удалить ваш аккаунт?</p>
+  <div mat-dialog-content>
+    <p class="text">Если да, то введите ваш ник и нажмите удалить</p>
+    <mat-form-field>
+      <input matInput placeholder="Ник" [(ngModel)]="nickname">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-flat-button  color="primary"  (click)="cancel()" cdkFocusInitial >Отмена</button>
+    <button mat-flat-button (click)="delete()" >Удалить</button>
+  </div>
+</div>

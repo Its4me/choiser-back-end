@@ -1,3 +1,4 @@
+import { AppService } from './../app.service';
 import { User, RatingParams } from './../../shared/interfaces';
 import { UserService } from './../../core/services/user.service';
 import { AuthCoreService } from './../../core/services/authCore.service';
@@ -12,7 +13,7 @@ import { debounceTime } from 'rxjs/operators';
   templateUrl: './rating.component.html',
   styleUrls: ['./rating.component.scss']
 })
-export class RatingComponent implements OnInit, AfterViewInit, OnDestroy {
+export class RatingComponent implements OnInit, OnDestroy {
  @ViewChild('male') maleRef: ElementRef
  @ViewChild('female') femaleRef: ElementRef
 
@@ -26,7 +27,8 @@ export class RatingComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private authCoreServ: AuthCoreService,
     private userServ: UserService,
-    private ratingServ: RatingService
+    private ratingServ: RatingService,
+    private appServ: AppService
   ) { }
 
   ngOnInit() {
@@ -47,12 +49,6 @@ export class RatingComponent implements OnInit, AfterViewInit, OnDestroy {
     this.regions$ = this.ratingServ.getRegion()
 
   }
-
-ngAfterViewInit(): void {
-  
-  
-  
-}
     
     
   
@@ -71,7 +67,9 @@ ngAfterViewInit(): void {
 
     this.onReload.next(params)
   }
-
+  openMenu(){
+    this.appServ.toggle()
+  }
   // buttonSubscribe(){
   //   this.maleButton$ = fromEvent(this.maleRef.nativeElement, 'click')
   //   this.maleButton$.pipe(debounceTime(3000)).subscribe(res => console.log('asdsda'))

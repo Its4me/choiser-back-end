@@ -27,3 +27,13 @@ mat-radio-button{
   align-items: center;
   padding: 1.5rem;
 }
+@media (max-width: 586px){
+  mat-horizontal-stepper{
+    width: 90%;
+    max-width: 700px;
+  }
+  form .m6{
+    width: 100%;
+    margin: .75rem 0;
+  }
+}

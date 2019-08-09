@@ -16,6 +16,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatRippleModule } from '@angular/material/core';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -26,6 +30,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    
     MatButtonModule,
     MatInputModule,
     MatListModule,
@@ -37,7 +42,10 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatSelectModule,
     MatTableModule,
     MatDialogModule,
-    MatStepperModule
+    MatStepperModule,
+    SwiperModule,
+    MatSidenavModule,
+    MatRippleModule
   ]
 })
 export class SharedModule { }

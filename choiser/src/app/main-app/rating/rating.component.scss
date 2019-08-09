@@ -30,6 +30,15 @@ button i{
   align-items: center;
   justify-content: center
 }
-.control div{
-  width: 200px;
+
+@media (max-width: 586px){
+  h2{
+    margin-bottom: 0;
+  }
+  .sex span{
+    display: none;
+  }
+  .control{
+    font-size: 13px;
+  }
 }

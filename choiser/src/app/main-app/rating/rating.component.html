@@ -1,16 +1,16 @@
 <section>
-  <h2 class="center">Рейтинг</h2>
+  <button mat-icon-button class="menu-btn" (click)="openMenu()">
+    <i class="fas fa-bars"></i>
+  </button>
+  <h2 class="header-h2 center">Рейтинг</h2>
   <ng-container *ngIf="user &&  regions$ | async">
     <div class="control">
       <div class="region">
         <mat-form-field>
           <mat-label>Область</mat-label>
           <mat-select [(ngModel)]="user.region">
-            <mat-option 
-              *ngFor="let region of regions$ | async" 
-              [value]="region.name"
-              (click)="refresh({'region': region.name})"
-              >{{region.name}}
+            <mat-option *ngFor="let region of regions$ | async" [value]="region.name"
+              (click)="refresh({'region': region.name})">{{region.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -18,25 +18,16 @@
       <div class="sex">
 
         <span>Пол</span>
-        <button 
-          class="female" 
-          #female
-          mat-icon-button 
-          (click)="refresh({'sex': 'female'}, 'female')"
-          [ngClass]="{'active': user.sex == 'female'}"
-          >
+        <button class="female" #female mat-icon-button (click)="refresh({'sex': 'female'}, 'female')"
+          [ngClass]="{'active': user.sex == 'female'}">
           <i class="fas fa-female"></i>
         </button>
-        <button 
-          class="male" 
-          #male
-          mat-icon-button 
-          (click)="refresh({'sex': 'male'}, 'male')"
+        <button class="male" #male mat-icon-button (click)="refresh({'sex': 'male'}, 'male')"
           [ngClass]="{'active': user.sex == 'male'}">
           <i class="fas fa-male"></i>
         </button>
 
-       
+
       </div>
       <div class="panel">
         <button class="male" mat-icon-button (click)="refresh()">
@@ -46,13 +37,10 @@
       </div>
     </div>
 
-    <div class="example-container" >
-      <app-table 
-        [region]="user.region" 
-        [sex]="user.sex"
-        [onReload]="onReload">
+    <div class="example-container">
+      <app-table [region]="user.region" [sex]="user.sex" [onReload]="onReload">
       </app-table>
-      
+
     </div>
   </ng-container>
 

@@ -1,7 +1,7 @@
 import { UserService } from '../../core/services/user.service';
 import { User } from './../../shared/interfaces';
 import { AuthCoreService } from './../../core/services/authCore.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -13,6 +13,8 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+
+  @Output() swipeLeft = new EventEmitter()
 
   user$: Observable<User>
   user: User
@@ -40,6 +42,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){}
 
+  swipeleft(){
+    this.swipeLeft.emit()
+  }
+
   exit(){
     this.auth.setUser({})
     this.auth.setId(null)
@@ -47,4 +53,5 @@ export class NavbarComponent implements OnInit, OnDestroy {
     localStorage.setItem('token', null)
     this.router.navigate(['login'])
   }
+
 }

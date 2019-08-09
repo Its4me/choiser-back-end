@@ -32,4 +32,7 @@ export class UserService {
   editAvatar(data): Observable<User>{
     return this.http.patch<User>('api/user/avatar', data)
   }
+  deleteUser(id: string){
+    return this.http.delete(`api/user/${id}`)
+  }
 }

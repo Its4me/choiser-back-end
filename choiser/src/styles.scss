@@ -115,7 +115,8 @@ h1 {
 h2 {
   font-size: 3.56rem;
   line-height: 110%;
-  margin: 2.3733333333rem 0 1.424rem 0;
+  padding:  2.3733333333rem 0 1.424rem 0;
+  margin: 0;
 }
 
 h3 {
@@ -173,6 +174,57 @@ a{
   }
   
 }
+button.menu-btn{
+  position: absolute;
+  display: none;
+  font-size: 30px;
+  top: 27px;
+  left: 27px;
+  z-index: 5;
+}
+mat-icon.mat-icon{
+  display: none;
+}
+
+
+
+
+@media (max-width: 992px){
+  .header-h2{
+    font-size: 2.3rem;
+    padding: 1rem 0;
+  }
+  button.menu-btn{
+    display: block;
+  }
+}
+
+@media (max-width: 586px){
+  .header-h2{
+    font-size: 1.2rem;
+    padding: 10px 0;
+    margin-bottom: .75rem;
+    color: #fff;
+    background: linear-gradient(120deg, #3498db, #8e44ad)
+  }
+  td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type{
+    padding-left: 13px;
+  }
+  td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type{
+    padding-right: 13px;
+  }
+  button.menu-btn{
+    color: #fff;
+    font-size: 16px;
+    top: 0;
+    left: 0;
+  }
+  mat-horizontal-stepper .mat-horizontal-content-container{
+    padding: 0 8px 8px 8px;
+  }
+}
+
+
 
 
 

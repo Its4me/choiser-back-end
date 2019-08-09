@@ -2,3 +2,9 @@ form .m6{
   width: calc(50% - 3rem);
   margin: 1.5rem;
 }
+@media (max-width: 586px){
+  form .m6{
+    width: 90%;
+    margin: 0.5rem 5%;
+  }
+}

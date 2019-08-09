@@ -1,12 +1,10 @@
 import { SharedModule } from 'src/app/shared/shared.module';
-import { UserService } from '../../core/services/user.service';
 import { PhotoswiperComponent } from './photoswiper/photoswiper.component';
 import { UserComponent } from './user.component';
 import { FillPipe } from './array-fill.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
-import { SwiperModule } from 'ngx-swiper-wrapper';
 import { AvatarPopUpComponent } from './avatar-pop-up/avatar-pop-up.component';
 
 @NgModule({
@@ -19,8 +17,7 @@ import { AvatarPopUpComponent } from './avatar-pop-up/avatar-pop-up.component';
   ],
   imports: [
     CommonModule,
-    SharedModule,
-    SwiperModule
+    SharedModule
   ],
   exports: [AvatarPopUpComponent],
   entryComponents: [AvatarPopUpComponent]

@@ -1,5 +1,5 @@
-<div class="sidenav sidenav-fixed">
-  <h4>Choiser</h4>
+<div class="sidenav sidenav-fixed" (swipeleft)="swipeleft()">
+  <h1>Choiser</h1>
 
 
   <div class="user-view" *ngIf="user">
@@ -28,8 +28,20 @@
     <br>
     Есть предложения или жалоба на сайт?
     Напиши мне в
-    <a target="_blank" href="https://t.me/OhMyTime">телеграм</a> 
-    или 
+    <a target="_blank" href="https://t.me/OhMyTime">телеграм</a>
+    или
     <a target="_blank" href="https://www.instagram.com/yaroslav__s__/">инстаграм</a>
+    <br>
+    <div class="social">
+      <a mat-mini-fab color="primary" target="_blank" href="https://www.facebook.com/SYchoiser/">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a mat-mini-fab class="instagram-icon" target="_blank" href="https://www.instagram.com/choiser_official/">
+          <i class="fab fa-instagram"></i>
+      </a>
+      <a mat-mini-fab class="telegram-icon" target="_blank" href="https://t.me/choiser">
+        <i class="fab fa-telegram-plane"></i>
+      </a>
+    </div>
   </div>
 </div>

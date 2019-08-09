@@ -1,14 +1,17 @@
 <section>
-  <h3>Редактировать профиль</h3>
+  <button mat-icon-button class="menu-btn" (click)="back()">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+  <h2 class="header-h2">Редактировать профиль</h2>
   <div class="divider"></div>
   <form class="row" [formGroup]="form" (ngSubmit)="onSubmit()">
 
     <mat-form-field class="input-field col s12 m6">
-      <input placeholder="Ник"  matInput type="text" formControlName="nickname">
+      <input placeholder="Ник" matInput type="text" formControlName="nickname">
     </mat-form-field>
 
     <mat-form-field class="input-field col s12 m6">
-      <input placeholder="email"  matInput type="text" formControlName="email">
+      <input placeholder="email" matInput type="text" formControlName="email">
     </mat-form-field>
 
     <mat-form-field class="input-field col s12 m6">
@@ -20,24 +23,20 @@
     </mat-form-field>
 
     <app-region-choise [(location)]="location" [(errors)]='regionErrors' [updateForm]="updateForm">
-       
+
     </app-region-choise>
 
 
     <mat-radio-group class="d-flex" formControlName="sex">
-      <mat-radio-button color="primary" value="male" >Мужской</mat-radio-button>
-      <mat-radio-button color="primary" value="female" >Женский</mat-radio-button>
+      <mat-radio-button color="primary" value="male">Мужской</mat-radio-button>
+      <mat-radio-button color="primary" value="female">Женский</mat-radio-button>
     </mat-radio-group>
 
     <div class="col s12 center">
 
-      <button 
-        mat-raised-button 
-        color="primary"
-        type="submit" 
-        *ngIf="!loading; else loader"
-        >Сохранить
+      <button mat-raised-button color="primary" type="submit" *ngIf="!loading; else loader">Сохранить
       </button>
+      
 
       <ng-template #loader>
         <div class="flex-center">
@@ -45,6 +44,13 @@
         </div>
       </ng-template>
 
-      </div>
+    </div>
   </form>
+  <button class="delete-btn" 
+        mat-raised-button 
+        color="warn" 
+        type="button" 
+        (click)="deleteAccount()" 
+        >Удалить аккаунт
+        </button>
 </section>

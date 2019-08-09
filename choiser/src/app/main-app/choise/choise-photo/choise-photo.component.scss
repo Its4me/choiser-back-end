@@ -21,6 +21,7 @@
 :host{
     width: 45%;
     height: 480px;
+    max-width: 500px;
 }
 .menu{
     position: absolute;
@@ -37,5 +38,33 @@
     right: 0.5em;
     i{
         font-size: 1.3rem;
+    }
+}
+
+
+@media (max-width: 850px){
+    :host{
+        height: 420px;
+    }
+}
+@media (max-width: 768px){
+    :host{
+        height: 390px;
+    }
+}
+@media (max-width: 676px){
+    :host{
+        height: 340px;
+    }
+}
+@media (max-width: 586px){
+    :host{
+        width: 100%;
+        height: auto;
+        margin-bottom: .75rem;
+        max-height: 670px;
+    }
+    .photo-wrapper{
+        border-radius: 0;
     }
 }

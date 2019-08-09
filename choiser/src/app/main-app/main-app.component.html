@@ -1,9 +1,27 @@
-<div class="layout">
-  <div class="navbar">
-    <app-navbar></app-navbar>
-  </div>
-  <main>
-    <router-outlet></router-outlet>
-  </main>
-</div>
+<mat-sidenav-container class="layout" (swipeleft)="onSwipeLeft($event)">
+
+  <mat-sidenav 
+    class="navbar" 
+    #sidenav
+    [opened]="screenWidth > mobileWidth" 
+    [autoFocus]="false"
+    [mode]="(screenWidth > mobileWidth) ? 'side' : 'over'"
+    (swipeLeft)="onSwipeLeft($event)"
+    >
+    <app-navbar  ></app-navbar>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <main class="swiper-slide" (swiperight)="onSwipeRigth($event)">
+      <router-outlet></router-outlet>
+    </main>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+
+
+
 <app-stepper *ngIf="showStepper" (onDataLoad)="onDataLoad($event)"></app-stepper>

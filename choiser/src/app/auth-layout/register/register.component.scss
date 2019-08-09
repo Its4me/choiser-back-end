@@ -4,3 +4,19 @@ form{
 button{
   margin-top: 0.5rem;
 }
+:host{
+  width: 100%;
+}
+
+
+@media (max-width: 600px){
+  h2{
+    text-align: center;
+    font-size: 2rem;
+    padding: 13px 0;
+  }
+  .hello-text{
+    padding: 0 0 13px 0;
+    margin: 0;
+  }
+}

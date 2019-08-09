@@ -1,5 +1,8 @@
 <section>
-    <h2 class="center">Выбирай с умом</h2>
+    <button mat-icon-button class="menu-btn" (click)="openMenu()">
+        <i class="fas fa-bars"></i>
+    </button>
+    <h2 class="header-h2 center">Выбирай с умом</h2>
     <div class="choise" *ngIf="photos$ | async as photos; else loader">
 
         <ng-container *ngIf="photos.photos.length >= 2; else noPhoto">
@@ -12,7 +15,7 @@
             </div>
         </ng-container>
         <ng-template #noPhoto>
-            <p class="center">
+            <p class="center no-users-text">
                 Проверьте ввели ли вы <strong>регион</strong> и <strong>пол</strong> в настройках, если да,<br>
                 то пока просто не хватает пользователей, зовите друзей и играйте)
             </p>

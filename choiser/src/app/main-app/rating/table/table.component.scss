@@ -17,3 +17,9 @@ a{
   display: flex;
   align-items: center;
 }
+@media (max-width: 586px){
+  .text{
+    padding: 0 13px;
+  }
+}
+

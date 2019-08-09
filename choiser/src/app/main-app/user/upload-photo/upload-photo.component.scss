@@ -41,3 +41,27 @@
 .big-fz{
   font-size: 1.8rem ;
 }
+@media (max-width: 992px){
+  .delete{
+    opacity: 1;
+    visibility: visible;
+  }
+  .photo{
+    width: 25%;
+  }
+}
+@media (max-width: 768px){
+  .photo{
+    width: 33.33333%;
+  }
+}
+@media (max-width: 586px){
+  .photo{
+    height: 200px;
+  }
+}
+@media (max-width: 480px){
+  .photo{
+    width: 50%;
+  }
+}

@@ -1,3 +1,5 @@
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteConfirmPopupComponent } from './delete-confirm-popup/delete-confirm-popup.component';
 import { Material } from './../../shared/classes/material';
 import { UserService } from '../../core/services/user.service';
 import { FormBuilder } from '@angular/forms';
@@ -5,6 +7,7 @@ import { User } from './../../shared/interfaces';
 import { AuthCoreService } from './../../core/services/authCore.service';
 import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-user',
@@ -41,7 +44,9 @@ export class EditUserComponent implements OnInit, OnDestroy {
     private auth: AuthCoreService,
     private fb: FormBuilder,
     private userServ: UserService,
-    private material: Material
+    private material: Material,
+    private router: Router,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -98,5 +103,14 @@ export class EditUserComponent implements OnInit, OnDestroy {
         }
       )
   }
-
+  back(){
+    this.router.navigate(['user', this.auth.getId()])
+  }
+  deleteAccount(){
+    const dialogRef = this.dialog.open(DeleteConfirmPopupComponent, { 
+      autoFocus: true,
+      data: this.auth.getUser()
+    })
+    
+  }
 }

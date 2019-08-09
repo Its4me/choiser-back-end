@@ -3,6 +3,7 @@
   justify-content: space-around ;
   float: left;
   height: 100%;
+  flex-wrap: wrap;
 }
 .choise{
   float: left;
@@ -20,6 +21,15 @@
   display: flex;
   justify-content: center;
 }
+.no-users-text{
+  padding: 0 .75em;
+}
 p.center{
   font-size: 1.3rem;
+}
+@media (max-width: 586px){
+  .button-wrapper{
+    margin: 0 0 .75rem;
+  }
+  
 }
