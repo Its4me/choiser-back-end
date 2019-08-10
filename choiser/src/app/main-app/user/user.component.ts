@@ -4,12 +4,12 @@ import { AuthCoreService } from './../../core/services/authCore.service';
 import { Material } from 'src/app/shared/classes/material';
 import { User, Photo } from './../../shared/interfaces';
 
-import { Component, OnInit, ElementRef, OnDestroy, ViewChildren, QueryList, EventEmitter } from '@angular/core';
+import { Component, OnInit, ElementRef, OnDestroy, ViewChildren, QueryList, EventEmitter, ViewChild } from '@angular/core';
 import { UserService } from '../../core/services/user.service';
 import { forkJoin } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { untilDestroyed } from 'ngx-take-until-destroy';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface, SwiperDirective } from 'ngx-swiper-wrapper';
 import { MatDialog } from '@angular/material/dialog';
 
 
@@ -19,7 +19,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit, OnDestroy {
-
+  @ViewChild(SwiperDirective) slider: SwiperDirective;
+  @ViewChild('input') inputRef: ElementRef;
   @ViewChildren('slide') slides: QueryList<ElementRef>;
 
   openBigPhoto: EventEmitter<any> = new EventEmitter();
@@ -136,16 +137,15 @@ export class UserComponent implements OnInit, OnDestroy {
         this.uploadPhotos[i].photo = reader.result as string
       }
     }
+    this.inputRef.nativeElement.value = '' 
 
   }
 
 
-  deletePhoto(i: number) {
-
-    const photo = this.photos.find(photo => {
-      return photo._id == this.photos[i]._id
-    })
+  deletePhoto(i: number, photo: Photo) {
     this.photos.splice(i, 1)
+    this.slider.update()
+
     this.userServ.deletePhoto(photo._id)
       .pipe(untilDestroyed(this))
       .subscribe()
@@ -153,6 +153,8 @@ export class UserComponent implements OnInit, OnDestroy {
 
   onPhotoLoad(photos: Photo[]) {
     this.photos.push(...photos)
+ 
+    this.slider.update()
   }
 
   editAvatar(event: any) {
