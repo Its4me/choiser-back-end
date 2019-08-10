@@ -49,8 +49,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   exit(){
     this.auth.setUser({})
     this.auth.setId(null)
-    localStorage.setItem('_id', null)
-    localStorage.setItem('token', null)
+    localStorage.setItem('_id', '')
+    localStorage.setItem('token', '')
     this.router.navigate(['login'])
   }
 

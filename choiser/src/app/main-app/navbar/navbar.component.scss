@@ -126,11 +126,12 @@ h1{
   }
   .telegram-icon{
     background-color: #0088cc;
-    margin-left: -3px;
+    i{   margin-left: -3px;}
+ 
   }
-  .instagram-icon{
-    margin-top: -5px;
+  .instagram-icon {
     background-color: #e1306c;
+    i{ margin-top: -5px;}
   }
 }
 .links{

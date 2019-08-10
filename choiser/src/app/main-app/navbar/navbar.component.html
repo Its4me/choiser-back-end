@@ -1,4 +1,4 @@
-<div class="sidenav sidenav-fixed" (swipeleft)="swipeleft()">
+<div class="sidenav sidenav-fixed" [style.touch-action]="'pan-y'" (swipeleft)="swipeleft()">
   <h1>Choiser</h1>
 
 
@@ -33,7 +33,7 @@
     <a target="_blank" href="https://www.instagram.com/yaroslav__s__/">инстаграм</a>
     <br>
     <div class="social">
-      <a mat-mini-fab color="primary" target="_blank" href="https://www.facebook.com/SYchoiser/">
+      <a mat-mini-fab class="facebook-icon" target="_blank" href="https://www.facebook.com/SYchoiser/">
         <i class="fab fa-facebook-f"></i>
       </a>
       <a mat-mini-fab class="instagram-icon" target="_blank" href="https://www.instagram.com/choiser_official/">
