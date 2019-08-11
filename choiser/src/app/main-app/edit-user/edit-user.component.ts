@@ -2,7 +2,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmPopupComponent } from './delete-confirm-popup/delete-confirm-popup.component';
 import { Material } from './../../shared/classes/material';
 import { UserService } from '../../core/services/user.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { User } from './../../shared/interfaces';
 import { AuthCoreService } from './../../core/services/authCore.service';
 import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
@@ -34,8 +34,8 @@ export class EditUserComponent implements OnInit, OnDestroy {
   form = this.fb.group({
     name: ['user.name'],
     lastname: ['user.lastname'],
-    email: ['user.email'],
-    nickname: ['user.nickname'],
+    email: ['user.email', [Validators.required, Validators.email]],
+    nickname: ['user.nickname', [Validators.required, Validators.minLength(2)]],
     sex: ['user.sex']
   })
 
@@ -86,6 +86,8 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    if(this.form.invalid || this.regionErrors.region) {return}
+
     this.loading = true
   
     const newUser = Object.assign({},this.form.value, this.location)

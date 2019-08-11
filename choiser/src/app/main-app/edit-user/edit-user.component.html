@@ -8,10 +8,31 @@
 
     <mat-form-field class="input-field col s12 m6">
       <input placeholder="Ник" matInput type="text" formControlName="nickname">
+      
+      <mat-error  class="helper-text red-text" *ngIf="form.get('nickname').errors && form.get('nickname').touched">
+        <span *ngIf="form.get('nickname').errors.required">
+          Введите свой ник
+        </span>
+        <span *ngIf="form.get('nickname').errors.minlength && !form.get('nickname').errors.requaired">
+          Минимум {{form.get('nickname').errors.minlength.requiredLength}} символа
+          сейчас {{form.get('nickname').errors.minlength.actualLength}}
+        </span>
+      </mat-error >
+    </mat-form-field>
     </mat-form-field>
 
     <mat-form-field class="input-field col s12 m6">
       <input placeholder="email" matInput type="text" formControlName="email">
+
+      <mat-error  class="helper-text red-text" *ngIf="form.get('email').errors && form.get('email').touched">
+        <span *ngIf="form.get('email').errors.required">
+          Введите свой email
+        </span>
+        <span *ngIf="form.get('email').errors.email && !form.get('email').errors.requaired">
+          Введите правильный email
+        </span>
+      </mat-error >
+    </mat-form-field>
     </mat-form-field>
 
     <mat-form-field class="input-field col s12 m6">
