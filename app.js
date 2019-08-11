@@ -9,6 +9,7 @@ const photoRoutes = require('./routes/photo')
 const ratingRoutes = require('./routes/rating')
 const votingRoutes = require('./routes/voting')
 const userRoutes = require('./routes/user')
+const notificationRoutes = require('./routes/notification')
 const path = require('path')
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
@@ -30,6 +31,7 @@ app.use('/api/photo', photoRoutes)
 app.use('/api/rating', ratingRoutes)
 app.use('/api/voting', votingRoutes)
 app.use('/api/user', userRoutes)
+app.use('/api/notification', notificationRoutes)
 
 
 if (process.env.NODE_ENV === 'production') {

@@ -22,6 +22,10 @@ const photoSchema = new Schema({
     type: Number,
     default: 0
   },
+  superLikes: {
+    type: Number,
+    default: 0
+  }
 })
 
 module.exports = mongoose.model('photos', photoSchema)

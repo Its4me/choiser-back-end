@@ -1,20 +1,19 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/voting')
+const controller = require('../controllers/notification')
 const passport = require('passport')
 
 router.get('/', 
-
   passport.authenticate('jwt', { session: false }),
-  controller.getPhotos
+  controller.getNotifications
 )
-router.post('/', 
+router.delete('/:id', 
   passport.authenticate('jwt', { session: false }),
-  controller.vote
+  controller.deleteById
 )
-router.post('/superLike', 
+router.delete('/', 
   passport.authenticate('jwt', { session: false }),
-  controller.voteSuperLike
+  controller.deleteAll
 )
 
 

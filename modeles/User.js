@@ -82,6 +82,14 @@ const userSchema = new Schema({
   selectable: {
     type: Boolean,
     default: false
+  },
+  coins: {
+    type: Number,
+    default: 500
+  },
+  notificationCount: {
+    type: Number,
+    default: 0
   }
 })
 
