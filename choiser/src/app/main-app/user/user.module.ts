@@ -1,5 +1,5 @@
 import { SharedModule } from 'src/app/shared/shared.module';
-import { PhotoswiperComponent } from './photoswiper/photoswiper.component';
+
 import { UserComponent } from './user.component';
 import { FillPipe } from './array-fill.pipe';
 import { NgModule } from '@angular/core';
@@ -11,7 +11,6 @@ import { AvatarPopUpComponent } from './avatar-pop-up/avatar-pop-up.component';
   declarations: [
     FillPipe,
     UserComponent,
-    PhotoswiperComponent,
     UploadPhotoComponent,
     AvatarPopUpComponent
   ],

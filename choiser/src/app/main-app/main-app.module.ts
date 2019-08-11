@@ -4,6 +4,7 @@ import { ChoiseModule } from './choise/choise.module';
 import { RegionModule } from './../shared/region-choise/region.module';
 import { SharedModule } from './../shared/shared.module';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { PhotoswiperComponent } from './photoswiper/photoswiper.component';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,6 +20,7 @@ import { StepperComponent } from './stepper/stepper.component';
     MainAppComponent,
     EditUserComponent,
     StepperComponent,
+    PhotoswiperComponent,
     DeleteConfirmPopupComponent
   ],
   imports: [

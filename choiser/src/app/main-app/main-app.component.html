@@ -21,6 +21,6 @@
 </mat-sidenav-container>
 
 
-
+<app-photoswiper *ngIf="appServ.getBigPhoto() | async" ></app-photoswiper>
 
 <app-stepper *ngIf="showStepper" (onDataLoad)="onDataLoad($event)"></app-stepper>

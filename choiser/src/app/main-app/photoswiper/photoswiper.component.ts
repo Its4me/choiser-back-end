@@ -1,3 +1,4 @@
+import { AppService } from './../app.service';
 import { Component, OnInit, ViewChild, ElementRef, Input, EventEmitter, OnDestroy } from '@angular/core';
 import * as PhotoSwipe from 'photoswipe/dist/photoswipe.min.js'
 import * as PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default.min.js'
@@ -11,14 +12,15 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 export class PhotoswiperComponent implements OnInit, OnDestroy {
 
   @ViewChild('megaphoto') megaphotoRef: ElementRef
-  @Input() private openBigPhoto: EventEmitter<any>
 
   gallery = null
 
-  constructor() { }
+  constructor(
+    private appServ: AppService
+  ) { }
 
   ngOnInit() {
-    this.openBigPhoto.pipe(
+    this.appServ.getBigPhoto().pipe(
       untilDestroyed(this)).
       subscribe(
         res => this.open(res.index, res.photos)

@@ -86,7 +86,7 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   open(i: number) {
-    this.openBigPhoto.emit({ index: i, photos: this.slides })
+    this.appServ.openBigPhoto({ index: i, photos: this.slides })
   }
 
 
