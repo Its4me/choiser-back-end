@@ -25,7 +25,7 @@ export class MainAppComponent implements OnInit, OnDestroy {
   constructor(
     private authCoreServ: AuthCoreService,
     private router: Router,
-    private appServ: AppService
+    public appServ: AppService
   ) {
     this.screenWidth = window.innerWidth
 
