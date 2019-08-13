@@ -6,8 +6,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
   selector: 'app-photoswiper',
-  templateUrl: './photoswiper.component.html',
-  styleUrls: ['./photoswiper.component.scss']
+  templateUrl: './photoswiper.component.html'
 })
 export class PhotoswiperComponent implements OnInit, OnDestroy {
 

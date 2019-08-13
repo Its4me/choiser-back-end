@@ -1,3 +1,5 @@
+import { Material } from 'src/app/shared/classes/material';
+import { AuthCoreService } from './../../core/services/authCore.service';
 import { AppService } from './../app.service';
 import { Photo } from './../../shared/interfaces';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -17,7 +19,9 @@ export class ChoiseComponent implements OnInit, OnDestroy {
 
   constructor(
     private choiseServ: ChoiseService,
-    private appServ: AppService
+    private appServ: AppService,
+    private authCoreServ: AuthCoreService,
+    private material: Material
   ) { }
 
   ngOnInit() {
@@ -26,11 +30,26 @@ export class ChoiseComponent implements OnInit, OnDestroy {
   ngOnDestroy(){}
 
   onVote(e: Photo){
-    this.choiseServ.vote(e).pipe(untilDestroyed(this)).subscribe()
+    this.choiseServ.vote(e, false).pipe(untilDestroyed(this)).subscribe()
     this.photos$ = null
     this.photos$ = this.choiseServ.fetch()
   }
-
+  onVoteSuperLike(e: Photo){
+    if(this.authCoreServ.getUser().coins == 0) {
+      this.material.openSnackBar('Не хватает coin-ов')
+      return
+    }
+    this.choiseServ.vote(e, true)
+      .pipe(untilDestroyed(this))
+      .subscribe( 
+        res => {
+          this.authCoreServ.setUserParam('coins', res.coins)
+          this.photos$ = null
+          this.photos$ = this.choiseServ.fetch()
+        },
+        err => this.material.openSnackBar(err.error.message)
+      )
+  }
   skip(){
     this.photos$ = null
     this.photos$ = this.choiseServ.fetch()
@@ -38,4 +57,5 @@ export class ChoiseComponent implements OnInit, OnDestroy {
   openMenu(){
     this.appServ.toggle()
   }
+ 
 }

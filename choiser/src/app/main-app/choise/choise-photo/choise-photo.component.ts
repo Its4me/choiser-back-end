@@ -9,6 +9,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class ChoisePhotoComponent implements OnInit {
 
   @Output () onVote = new EventEmitter<Photo>()
+  @Output () onVoteSuperLike = new EventEmitter<Photo>()
   @Input() photo: Photo
 
   constructor() { }
@@ -19,5 +20,8 @@ export class ChoisePhotoComponent implements OnInit {
 
   vote(){
     this.onVote.emit(this.photo)
+  }
+  superLike(){
+    this.onVoteSuperLike.emit(this.photo)
   }
 }

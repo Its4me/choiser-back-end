@@ -41,8 +41,7 @@
         <input #input (change)="onPhotosUpload($event)" class="none" type="file" multiple>
       </div>
     </div>
-    <div 
-      [swiper]="config" 
+    <div [swiper]="config" 
       class="carousel-wrapper swiper-container" 
       [ngClass]="{'d-none': uploadPhotos.length > 0 || photos.length < 1}"
       >
@@ -60,6 +59,10 @@
             class="delete">
             <i class="fas fa-times "></i>
           </button>
+          <div class="superLike" *ngIf="photo.superLikes > 0">
+            <i class="fas fa-star"></i>
+            <span>{{photo.superLikes}}</span>
+          </div>
         </a>
       </div>
 

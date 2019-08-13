@@ -19,6 +19,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRippleModule } from '@angular/material/core';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -45,7 +46,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatStepperModule,
     SwiperModule,
     MatSidenavModule,
-    MatRippleModule
+    MatRippleModule,
+    MatBadgeModule
   ]
 })
 export class SharedModule { }

@@ -40,7 +40,16 @@
         font-size: 1.3rem;
     }
 }
-
+.panel{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    button{
+        margin-top: -36px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
 
 @media (max-width: 850px){
     :host{

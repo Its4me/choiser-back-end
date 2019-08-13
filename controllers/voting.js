@@ -98,7 +98,7 @@ module.exports.voteSuperLike = async function (req, res) {
     let initiator = await User.findById(initiatorId)
     
     if(initiator.coins < costSuperLike){
-      res.status(400).json({
+      res.status(402).json({
         success: false,
         message: 'Упс, не хватает coin-ов'
       })

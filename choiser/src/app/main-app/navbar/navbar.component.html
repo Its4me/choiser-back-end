@@ -11,6 +11,12 @@
       <div class="myname">{{user.name}} {{user.lastname}}</div>
     </a>
   </div>
+  <div class="coins-info">
+    <button mat-flat-button color="primary">Пополнить coins</button>
+    <div class="coins-info-text" *ngIf="user">
+      На вашем счету {{user.coins}} <i class="fas fa-coins"></i>
+    </div>
+  </div>
   <a mat-button routerLink="/choise" class="links ">
     <i class="fas fa-mouse-pointer big-margin"></i>
     Играть
@@ -18,6 +24,20 @@
   <a mat-button routerLink="/rating" class="links ">
     <i class="fas fa-signal"></i>
     Рейтинг
+  </a>
+  <a mat-button routerLink="/notification" class="links " *ngIf="user">
+    <i class="far fa-bell"></i>
+    <span *ngIf="user.notificationCount > 0; else noBadge" [matBadge]="user.notificationCount" 
+      matBadgeOverlap="false" 
+      matBadgeColor="warn">
+      Уведомления
+    </span>
+    <ng-template #noBadge>
+      Уведомления
+    </ng-template>
+      
+     
+   
   </a>
   <a mat-button class="links" (click)="exit()">
     <i class="fas fa-door-open"></i>

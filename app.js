@@ -31,7 +31,7 @@ app.use('/api/photo', photoRoutes)
 app.use('/api/rating', ratingRoutes)
 app.use('/api/voting', votingRoutes)
 app.use('/api/user', userRoutes)
-app.use('/api/notification', notificationRoutes)
+app.use('/api/notifications', notificationRoutes)
 
 
 if (process.env.NODE_ENV === 'production') {

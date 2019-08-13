@@ -7,8 +7,18 @@
 
         <ng-container *ngIf="photos.photos.length >= 2; else noPhoto">
             <div class="choise-photo">
-                <choise-photo (onVote)="onVote($event)" [photo]="photos.photos[0]"></choise-photo>
-                <choise-photo (onVote)="onVote($event)" [photo]="photos.photos[1]"></choise-photo>
+                <choise-photo 
+                    (onVote)="onVote($event)" 
+                    [photo]="photos.photos[0]"
+                    (onVoteSuperLike)="onVoteSuperLike($event)"
+                    >
+                </choise-photo>
+                <choise-photo 
+                    (onVote)="onVote($event)" 
+                    [photo]="photos.photos[1]"
+                    (onVoteSuperLike)="onVoteSuperLike($event)"
+                    >
+                </choise-photo>
             </div>
             <div class="button-wrapper">
                 <button (click)="skip()" mat-raised-button color="primary">Пропустить</button>

@@ -167,6 +167,27 @@ strong{
   position: relative;
   overflow: hidden;
 }
+.superLike{
+  position: absolute;
+  bottom: 36px;
+  right: 5px;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40.5px;
+  height: 36px;
+  i{
+    font-size: 36px;
+    color: #e6d600;
+    position: absolute;
+    z-index: 5;
+  }
+  span{
+    position: relative;
+    z-index: 6;
+  }
+}
 @media (max-width: 992px){
   .header{
     padding-left: calc(40px + .75rem)

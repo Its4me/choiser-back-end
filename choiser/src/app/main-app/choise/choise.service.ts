@@ -23,7 +23,7 @@ export class ChoiseService {
   }
 
 
-  vote(photoWin: Photo): Observable<any> {
+  vote(photoWin: Photo, superLike: boolean): Observable<any> {
     
     const userLose = this.photos[0]._id == photoWin._id? this.photos[1] : this.photos[0]
    
@@ -33,7 +33,10 @@ export class ChoiseService {
       idLose: userLose.userId,
       idPhotoLose: userLose._id
     }
-
-    return this.http.post('api/voting', result)
+    if(!superLike){
+      return this.http.post('api/voting', result)
+    }else{
+      return this.http.post('api/voting/SuperLike', result)
+    }
   }
 }

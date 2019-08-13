@@ -10,7 +10,13 @@ module.exports.getNotifications = async function (req, res) {
       id,
       { notificationCount: 0 }
     )
+    const skip = req.query.skip
+    const limit = req.query.limit
+    
     const notifications = await Notification.find({userId: id})
+      .sort({ date: 1 })
+      .skip(+skip)
+      .limit(+limit)
     
 
     res.status(200).json(notifications)

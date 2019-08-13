@@ -1,0 +1,18 @@
+<article class="notification" *ngIf="superLike">
+  <div class="photo" (click)="navigatePhrofile()">
+    <img [src]="superLike.photoSrc? superLike.photoSrc : 'assets/no-user.png'" alt="">
+  </div>
+  <div class="text">
+    <p>
+        Вам поставили Суперлайк, хотите&nbsp;
+        <a [href]="'user/' + superLike.initiatorId">узнать кто?</a>
+    </p> 
+  </div>
+  <div class="date">
+    {{superLike.date | date:'dd.MM.yy'}}<br>
+    в {{superLike.date | date:'HH:mm'}}
+  </div>
+  <div class="delete" (click)="delete()"  matRipple matRippleCentered="true">
+    <i class="fas fa-times "></i>
+  </div>
+</article>

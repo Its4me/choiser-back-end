@@ -1,0 +1,11 @@
+.notifications{
+  padding: .75em;
+}
+.headers{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1.5em;
+  a:hover{
+    cursor: pointer;
+  }
+}

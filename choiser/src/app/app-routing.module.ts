@@ -9,6 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './auth-layout/register/register.component';
 import { RatingComponent } from './main-app/rating/rating.component';
 import { EditUserComponent } from './main-app/edit-user/edit-user.component';
+import { NotificationComponent } from './main-app/notification/notification.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
       { path: 'choise', component: ChoiseComponent, },
       { path: 'rating', component: RatingComponent, },
       { path: 'user/:id', component: UserComponent, },
-      { path: 'edit/user', component: EditUserComponent, }
+      { path: 'edit/user', component: EditUserComponent, },
+      { path: 'notification', component: NotificationComponent, }
     ]
   } 
 ]; 

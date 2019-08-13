@@ -1,0 +1,32 @@
+<section (scroll)="onScroll()">
+  <button mat-icon-button class="menu-btn" (click)="openMenu()">
+    <i class="fas fa-bars"></i>
+  </button>
+  <h2 class="center header-h2">Уведомления</h2>
+  <ng-container *ngIf="!loader">
+    <div class="headers" *ngIf="notifications.length > 0 ">
+      <a (click)="daleteAll()">Удалить все</a>
+    </div>
+
+    <div class="notifications" *ngIf="notifications.length > 0 ;else noNotifications">
+
+      <div class="notification-wrapper" 
+        *ngFor="let item of notifications;let i = index" 
+        [ngSwitch]="item.type">
+        <app-super-like 
+          *ngSwitchCase="'superLike'"
+           [superLike]="item"
+           [i]="i"
+           (deleteNotification)="deleteNotification($event)"
+           ></app-super-like>
+      </div>
+    </div>
+
+    <ng-template #noNotifications>
+      <p class="noNotifications center">Нет уведомлений</p>
+    </ng-template>
+  </ng-container>
+
+
+
+</section>

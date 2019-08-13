@@ -11,13 +11,13 @@ export class AuthCoreService {
     token: '',
     userId: ''
   }
-  
+
   private user: User = {}
   private userSubject: Subject<User>
 
   constructor(
-    
-  ){
+
+  ) {
     this.userSubject = new Subject<User>();
     this.user$ = this.userSubject.asObservable();
   }
@@ -34,18 +34,24 @@ export class AuthCoreService {
   setId(id: string) {
     this.auth.userId = id
   }
-  getId(): string{
+  getId(): string {
     return this.auth.userId
   }
 
-  getUser(): User{
-    return Object.assign({},this.user) 
+  getUser(): User {
+    return Object.assign({}, this.user)
   }
-  setUser(user: User){
+  setUser(user: User) {
     this.user = user
     this.userSubject.next(user)
   }
-  getUserObservable(): Observable<User>{
-    return of (this.user)
+  getUserObservable(): Observable<User> {
+    return of(this.user)
+  }
+  setUserParam(param: string, value: any) {
+    if(this.user[param] != value){
+      this.user[param] = value
+      this.userSubject.next(this.user)
+    }
   }
 }
