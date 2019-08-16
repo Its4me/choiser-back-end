@@ -20,6 +20,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRippleModule } from '@angular/material/core';
 import { MatBadgeModule } from '@angular/material/badge';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [],
@@ -47,7 +48,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     SwiperModule,
     MatSidenavModule,
     MatRippleModule,
-    MatBadgeModule
+    MatBadgeModule,
+    ClipboardModule
   ]
 })
 export class SharedModule { }

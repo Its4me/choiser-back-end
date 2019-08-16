@@ -6,13 +6,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { AvatarPopUpComponent } from './avatar-pop-up/avatar-pop-up.component';
+import { SocialComponent } from './social/social.component';
 
 @NgModule({
   declarations: [
     FillPipe,
     UserComponent,
     UploadPhotoComponent,
-    AvatarPopUpComponent
+    AvatarPopUpComponent,
+    SocialComponent
   ],
   imports: [
     CommonModule,
