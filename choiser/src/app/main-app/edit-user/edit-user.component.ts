@@ -1,5 +1,5 @@
 import { MatDialog } from '@angular/material/dialog';
-import { DeleteConfirmPopupComponent } from './delete-confirm-popup/delete-confirm-popup.component';
+import { DeleteConfirmPopupComponent } from './user-data/delete-confirm-popup/delete-confirm-popup.component';
 import { Material } from './../../shared/classes/material';
 import { UserService } from '../../core/services/user.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -16,35 +16,13 @@ import { Router } from '@angular/router';
 })
 export class EditUserComponent implements OnInit, OnDestroy {
 
-  updateForm: EventEmitter<any> = new EventEmitter();
-
-
-  location: User = {
-    region: '',
-    city: ''
-  }
-
-  regionErrors = {
-    region: false,
-    city: false
-  }
-  
   loading = false
 
-  form = this.fb.group({
-    name: ['user.name'],
-    lastname: ['user.lastname'],
-    email: ['user.email', [Validators.required, Validators.email]],
-    nickname: ['user.nickname', [Validators.required, Validators.minLength(2)]],
-    sex: ['user.sex']
-  })
-
+  user: User
 
   constructor(
     private auth: AuthCoreService,
-    private fb: FormBuilder,
     private userServ: UserService,
-    private material: Material,
     private router: Router,
     public dialog: MatDialog,
   ) { }
@@ -56,63 +34,21 @@ export class EditUserComponent implements OnInit, OnDestroy {
         .pipe(untilDestroyed(this))
         .subscribe(
           user => {
-            this.initForm(user)
+            this.user = user
             this.auth.setUser(user)
           },
           err => console.log('Ошибка хз что случилось ' + err)
         )
     } else {
-      this.initForm(this.auth.getUser())
+      this.user = this.auth.getUser()
     }
 
   }
 
-  ngOnDestroy() {
+  ngOnDestroy() { }
 
-  }
-
-
-  initForm(user: User) {
-    this.form.patchValue({
-      name: user.name,
-      lastname: user.lastname,
-      email: user.email,
-      nickname: user.nickname,
-      sex: user.sex
-    })
-    this.location.region = user.region
-    this.location.city = user.city
-    this.updateForm.emit()
-  }
-
-  onSubmit() {
-    if(this.form.invalid || this.regionErrors.region) {return}
-
-    this.loading = true
-  
-    const newUser = Object.assign({},this.form.value, this.location)
-    
-    this.userServ.editUser(newUser)
-      .pipe(untilDestroyed(this))
-      .subscribe(
-        res => {
-          this.auth.setUser(res)
-          this.material.openSnackBar('Сохранено')
-          this.loading = false
-        }, err => {
-          this.material.openSnackBar(err.error.message)
-          this.loading = false
-        }
-      )
-  }
   back(){
     this.router.navigate(['user', this.auth.getId()])
   }
-  deleteAccount(){
-    const dialogRef = this.dialog.open(DeleteConfirmPopupComponent, { 
-      autoFocus: true,
-      data: this.auth.getUser()
-    })
-    
-  }
+  
 }

@@ -113,6 +113,8 @@ THE SOFTWARE.
 
 @angular/material/table
 
+@angular/material/tabs
+
 @angular/platform-browser
 MIT
 
@@ -167,6 +169,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+ngx-clipboard
+MIT
+
 ngx-swiper-wrapper
 MIT
 The MIT License
@@ -193,6 +198,9 @@ THE SOFTWARE.
 
 
 ngx-take-until-destroy
+MIT
+
+ngx-window-token
 MIT
 
 photoswipe

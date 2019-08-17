@@ -90,6 +90,13 @@ const userSchema = new Schema({
   notificationCount: {
     type: Number,
     default: 0
+  },
+  social: {
+    instagram: String,
+    facebook: String,
+    telegram: String,
+    vk: String,
+    twitter: String
   }
 })
 

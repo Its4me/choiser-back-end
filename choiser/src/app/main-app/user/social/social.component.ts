@@ -1,5 +1,6 @@
 import { Material } from 'src/app/shared/classes/material';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-social',
@@ -7,12 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./social.component.scss']
 })
 export class SocialComponent implements OnInit {
+  @Input() user: User
+
+  social: boolean
 
   constructor(
     private material: Material
   ) { }
 
   ngOnInit() {
+    
   }
 
   copy($event){

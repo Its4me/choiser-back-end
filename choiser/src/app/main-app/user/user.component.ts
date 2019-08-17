@@ -28,6 +28,7 @@ export class UserComponent implements OnInit, OnDestroy {
   itsMe: boolean = false
   slidesInstance: any
   user: User = {}
+  haveSocial: boolean
 
   photoFile: File[] = []
   uploadPhotos: Photo[] = []
@@ -112,6 +113,9 @@ export class UserComponent implements OnInit, OnDestroy {
           photo.stars = this.formulaStar(photo.likes, photo.views)
           return photo
         })
+        
+        this.checkSocial(user)
+        
         this.pending = false
       }, err => {
         this.pending = false
@@ -121,6 +125,21 @@ export class UserComponent implements OnInit, OnDestroy {
 
 
       )
+  }
+  checkSocial(user: User){
+    if(!user.social){
+      this.haveSocial = false
+      return
+    }
+    Object.values(user.social).forEach(value => {
+      if(value != ''){
+        this.haveSocial = true
+        return
+      }
+    })
+    if(!this.haveSocial){
+      this.haveSocial = false
+    }
   }
   onPhotosUpload(event: any) {
     this.photoFile = []

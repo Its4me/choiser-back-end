@@ -1,0 +1,43 @@
+form{
+  width: 100%;
+  padding-bottom: .75em;
+}
+
+mat-form-field{
+  margin: 1.5em;
+  width: calc(50% - 3rem);
+  i{
+    font-size: 30px;
+  }
+}
+.insta{
+  color: #e1306c;
+}
+.facebook{
+  color: #3b5998;
+  
+}
+.telegram{
+  color: #0088cc;
+}
+.vk{
+  color: #4c75a3;
+}
+.twitter{
+  color: #55acee;
+}
+.clear{
+  width: 100%;
+}
+.btn-submit{
+  width: 103px;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 568px){
+  mat-form-field{
+    width: 90%;
+    margin: 0.5em 5%;
+  }
+}

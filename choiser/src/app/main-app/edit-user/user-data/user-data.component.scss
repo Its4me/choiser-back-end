@@ -1,0 +1,38 @@
+.row .m6{
+  width: calc(50% - 3rem);
+  margin: 1.5rem;
+}
+.center{
+  width: 100%;
+}
+.d-flex{
+  display: flex;
+  margin: 0 auto 1.5rem;
+  width: 350px;
+  padding-top: 1.5rem;
+  justify-content: space-around;
+  align-items: center;
+}
+form{
+  padding-bottom: .75rem;
+}
+app-region-choise{
+  float: left;
+  width: 100%;
+}
+.delete-btn{
+  margin: .75rem auto ;
+  width: 145px;
+  display: block;
+}
+
+@media (max-width: 568px){
+  .row .m6{
+    width: 90%;
+    margin: 0.5rem 5%;
+  }
+  .d-flex {
+    width: 300px;
+  }
+}
+

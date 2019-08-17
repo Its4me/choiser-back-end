@@ -13,6 +13,13 @@ export interface User {
   sex?: string
   coins?: Number
   notificationCount?: Number
+  social?: {
+    instagram: string
+    facebook: string
+    telegram: string
+    vk: string
+    twitter: string
+  }
 }
 
 export interface Login {

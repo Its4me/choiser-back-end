@@ -85,8 +85,8 @@
           Учавствует в топе региона "{{user.region}}"
         </h6>
       </div>
-      <div class="info-right">
-        <app-social></app-social>
+      <div class="info-right" *ngIf="haveSocial">
+        <app-social [user]="user"></app-social>
       </div>
     </div>
   </ng-container>

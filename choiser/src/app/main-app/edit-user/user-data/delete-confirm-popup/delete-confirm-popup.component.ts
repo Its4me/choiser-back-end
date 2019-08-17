@@ -1,6 +1,6 @@
-import { Material } from './../../../shared/classes/material';
-import { User } from './../../../shared/interfaces';
-import { UserService } from './../../../core/services/user.service';
+import { Material } from '../../../../shared/classes/material';
+import { User } from '../../../../shared/interfaces';
+import { UserService } from '../../../../core/services/user.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';

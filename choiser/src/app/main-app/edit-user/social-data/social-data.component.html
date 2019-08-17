@@ -1,0 +1,43 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <mat-form-field>
+    <span matPrefix class="insta"><i class="fab fa-instagram"></i> &nbsp;</span>
+    <input type="text" matInput placeholder="Instagram" formControlName="instagram">
+  </mat-form-field>
+  
+  <mat-form-field>
+    <span matPrefix class="telegram"><i class="fab fa-telegram-plane"></i> &nbsp;</span>
+    <input type="text" matInput placeholder="Telegram" formControlName="telegram">
+  </mat-form-field>
+
+  <mat-form-field>
+    <span matPrefix class="facebook"><i class="fab fa-facebook-f"></i> &nbsp;</span>
+    <input type="text" matInput placeholder="Facebook" formControlName="facebook">
+  </mat-form-field>
+
+  <mat-form-field>
+    <span matPrefix class="vk"><i class="fab fa-vk"></i> &nbsp;</span>
+    <input type="text" matInput placeholder="VK" formControlName="vk">
+  </mat-form-field>
+
+  <mat-form-field >
+    <span matPrefix class="twitter"><i class="fab fa-twitter"></i> &nbsp;</span>
+    <input type="text" matInput placeholder="Twitter" formControlName="twitter">
+  </mat-form-field>
+
+  <div class="clear"></div>
+  <button class="btn-submit" 
+    *ngIf="!loading; else loader" 
+    color="primary" 
+    type="submit" 
+    mat-raised-button
+    >Сохранить
+  </button>
+
+  <ng-template #loader>
+    <div class="flex-center">
+      <mat-spinner diameter="38"></mat-spinner>
+    </div>
+  </ng-template>
+
+</form>

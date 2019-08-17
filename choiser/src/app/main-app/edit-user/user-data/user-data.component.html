@@ -1,0 +1,67 @@
+<form class="row" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <mat-form-field class="input-field col s12 m6">
+    <input placeholder="Ник" matInput type="text" formControlName="nickname">
+    
+    <mat-error  class="helper-text red-text" *ngIf="form.get('nickname').errors && form.get('nickname').touched">
+      <span *ngIf="form.get('nickname').errors.required">
+        Введите свой ник
+      </span>
+      <span *ngIf="form.get('nickname').errors.minlength && !form.get('nickname').errors.requaired">
+        Минимум {{form.get('nickname').errors.minlength.requiredLength}} символа
+        сейчас {{form.get('nickname').errors.minlength.actualLength}}
+      </span>
+    </mat-error >
+  </mat-form-field>
+
+  <mat-form-field class="input-field col s12 m6">
+    <input placeholder="email" matInput type="text" formControlName="email">
+
+    <mat-error  class="helper-text red-text" *ngIf="form.get('email').errors && form.get('email').touched">
+      <span *ngIf="form.get('email').errors.required">
+        Введите свой email
+      </span>
+      <span *ngIf="form.get('email').errors.email && !form.get('email').errors.requaired">
+        Введите правильный email
+      </span>
+    </mat-error >
+  </mat-form-field>
+
+  <mat-form-field class="input-field col s12 m6">
+    <input placeholder="Имя" matInput type="text" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field class="input-field col s12 m6">
+    <input placeholder="Фамилия" matInput type="text" formControlName="lastname">
+  </mat-form-field>
+
+  <app-region-choise [(location)]="location" [(errors)]='regionErrors' [updateForm]="updateForm">
+
+  </app-region-choise>
+
+
+  <mat-radio-group class="d-flex" formControlName="sex">
+    <mat-radio-button color="primary" value="male">Мужской</mat-radio-button>
+    <mat-radio-button color="primary" value="female">Женский</mat-radio-button>
+  </mat-radio-group>
+
+  <div class="col s12 center">
+
+    <button mat-raised-button color="primary" type="submit" *ngIf="!loading; else loader">Сохранить
+    </button>
+    
+
+    <ng-template #loader>
+      <div class="flex-center">
+        <mat-spinner diameter="38"></mat-spinner>
+      </div>
+    </ng-template>
+    <button class="delete-btn" 
+      mat-raised-button 
+      color="warn" 
+      type="button" 
+      (click)="deleteAccount()" 
+      >Удалить аккаунт
+      </button>
+  </div>
+</form>

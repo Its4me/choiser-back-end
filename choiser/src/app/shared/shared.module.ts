@@ -21,6 +21,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRippleModule } from '@angular/material/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ClipboardModule } from 'ngx-clipboard';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [],
@@ -49,7 +50,8 @@ import { ClipboardModule } from 'ngx-clipboard';
     MatSidenavModule,
     MatRippleModule,
     MatBadgeModule,
-    ClipboardModule
+    ClipboardModule,
+    MatTabsModule
   ]
 })
 export class SharedModule { }

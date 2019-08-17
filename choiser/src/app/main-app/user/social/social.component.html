@@ -1,41 +1,36 @@
-<div class="socaial">
-  <div class="socaial-item">
-    <a class="circle insta"
-      target="_blank"
-      href="https://www.instagram.com/yaroslav__s__/"
-      title="Перейти"
-      >
-      <i class="fab fa-instagram"></i>
-    </a>
-    <div class="line insta"> <div class="name">Instagram</div></div>
-    <div class="text" 
-      ngxClipboard 
-      [cbContent]="'https://www.instagram.com/yaroslav__s__/'"
-      >
-      <span
-        (click)="copy($event)"
-        >https://www.instagram.com/yaroslav__s__/
-      </span>
+<div class="socaial" *ngIf="user.social">
+  <ng-container *ngFor="let social of user.social | keyvalue">
+    <div class="socaial-item" *ngIf="social.value" >
+
+      <a [ngClass]="[social.key, 'circle']"
+        target="_blank"
+        [href]="social.value"
+        title="Перейти"
+        >
+
+        <ng-container [ngSwitch]="social.key">
+          <i *ngSwitchCase="'instagram'" class="fab fa-instagram"></i>
+          <i *ngSwitchCase="'facebook'" class="fab fa-facebook-f"></i>
+          <i *ngSwitchCase="'telegram'" class="fab fa-telegram-plane"></i>
+          <i *ngSwitchCase="'vk'" class="fab fa-vk"></i>
+          <i *ngSwitchCase="'twitter'" class="fab fa-twitter"></i>
+        </ng-container>
+
+      </a>
+      <div [ngClass]="[social.key, 'line']">
+        <div class="name">
+          {{social.key}}
+        </div>
+      </div>
+      <div class="text" 
+        ngxClipboard 
+        [cbContent]="social.value"
+        >
+        <span
+          (click)="copy($event)"
+          >{{social.value}}
+        </span>
+      </div>
     </div>
-  </div>
-  <div class="socaial-item">
-    <div class="circle facebook"><i class="fab fa-facebook-f"></i></div>
-    <div class="line facebook"> <div class="name">Facebook</div></div>
-    <div class="text">https://www.instagram.com/yaroslav__s__/</div>
-  </div>
-  <div class="socaial-item">
-    <div class="circle telegram"><i class="fab fa-telegram-plane"></i></div>
-    <div class="line telegram"> <div class="name">Instagram</div></div>
-    <div class="text">https://www.instagram.com/yaroslav__s__/</div>
-  </div>
-  <div class="socaial-item">
-    <div class="circle vk"><i class="fab fa-vk"></i></div>
-    <div class="line vk"> <div class="name">Instagram</div></div>
-    <div class="text">https://www.instagram.com/yaroslav__s__/</div>
-  </div>
-  <div class="socaial-item">
-    <div class="circle twitter"><i class="fab fa-twitter"></i></div>
-    <div class="line twitter"> <div class="name">Instagram</div></div>
-    <div class="text">https://www.instagram.com/yaroslav__s__/</div>
-  </div>
+  </ng-container>
 </div>
