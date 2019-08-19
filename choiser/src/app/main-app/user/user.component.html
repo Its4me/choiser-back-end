@@ -40,6 +40,12 @@
       </a>
         <input #input (change)="onPhotosUpload($event)" class="none" type="file" multiple>
       </div>
+      <div class="no-my-menu"  *ngIf="!itsMe">
+        <a (click)="initDuel()"   mat-flat-button color="primary">
+          <i class="fas fa-clone"></i>
+          <span>Дуэль</span>
+        </a>
+      </div>
     </div>
     <div [swiper]="config" 
       class="carousel-wrapper swiper-container" 

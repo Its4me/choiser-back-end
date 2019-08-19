@@ -1,3 +1,4 @@
+import { PreparationComponent } from './main-app/duel/preparation/preparation.component';
 import { AuthGuard } from './core/classes/auth.guard';
 import { UserComponent } from './main-app/user/user.component';
 import { ChoiseComponent } from './main-app/choise/choise.component';
@@ -13,22 +14,24 @@ import { NotificationComponent } from './main-app/notification/notification.comp
 
 const routes: Routes = [
   {
-    path: '', component: AuthLayoutComponent, children: [
-      { path: '', pathMatch: 'full', redirectTo: 'login' },
-      { path: 'login', component: LoginComponent, },
-      { path: 'register', component: RegisterComponent, }
-    ]
-  },
-  {
     path: '', component: MainAppComponent, canActivate: [AuthGuard] ,children: [
       { path: '', pathMatch: 'full', redirectTo: 'choise' },
       { path: 'choise', component: ChoiseComponent, },
       { path: 'rating', component: RatingComponent, },
       { path: 'user/:id', component: UserComponent, },
       { path: 'edit/user', component: EditUserComponent, },
-      { path: 'notification', component: NotificationComponent, }
+      { path: 'notification', component: NotificationComponent, },
+      { path: 'duel/preparation/:id', component: PreparationComponent, }
     ]
-  } 
+  }, 
+  {
+    path: '', component: AuthLayoutComponent, children: [
+      { path: '', pathMatch: 'full', redirectTo: 'login' },
+      { path: 'login', component: LoginComponent, },
+      { path: 'register', component: RegisterComponent, }
+    ]
+  }
+  
 ]; 
 
 @NgModule({

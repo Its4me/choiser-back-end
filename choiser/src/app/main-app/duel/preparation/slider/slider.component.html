@@ -1,0 +1,24 @@
+<div [swiper]="config" class="carousel-wrapper swiper-container" *ngIf="photos">
+  <div class="swiper-wrapper">
+    <a *ngFor="let photo of photos;let i = index" class="carousel-item swiper-slide">
+      <img class="carousel-item-img" [src]="photo.photo" (click)="choise(i)" alt="">
+      <div class="item-bottom-panel" *ngIf="photo.stars && itsMe">
+        <i *ngFor="let star of photo.stars | fill" class="fas fa-star"></i>
+        <i *ngFor="let star of photo.stars | fill:true" class="far fa-star"></i>
+      </div>
+      <div class="superLike" *ngIf="photo.superLikes > 0">
+        <i class="fas fa-star"></i>
+        <span>{{photo.superLikes}}</span>
+      </div>
+      <button 
+        *ngIf="selected[i]"
+        mat-mini-fab 
+        class="choised">
+        <i class="fas fa-check"></i>
+      </button>
+    </a>
+  </div>
+
+  <div class="swiper-button swiper-button-prev"></div>
+  <div class="swiper-button swiper-button-next"></div>
+</div>

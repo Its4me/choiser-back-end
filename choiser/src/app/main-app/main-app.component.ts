@@ -55,7 +55,9 @@ export class MainAppComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy(){}
+  ngOnDestroy(){
+    this.appServ.setBigPhoto(null)
+  }
 
 
   onDataLoad() {

@@ -1,0 +1,27 @@
+<section>
+  <button mat-icon-button class="menu-btn" (click)="back()">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+  <h2 class="header-h2 center">Подготовка</h2>
+  <div class="slider">
+    <app-slider></app-slider>
+  </div>
+  <div class="coins">
+    <mat-form-field>
+      <input matInput type="number" placeholder="Ставка" value="100" min="100">
+      <i matSuffix class="fas fa-coins"></i>
+    </mat-form-field>
+  </div>
+  <div class="battle">
+    <app-choised-photo [position]="'left'"></app-choised-photo>
+    <div class="center vs choiser-font">VS</div>
+
+    <app-choised-photo *ngIf="!isNew; else nickName" [position]="'right'"></app-choised-photo>
+    <div class="nickname" #nickname *ngIf="preparationServ.users[1]">
+      {{preparationServ.users[1].nickname}}
+    </div>
+  </div>
+  <div class="button">
+    <button mat-flat-button color="primary">Отправить</button>
+  </div>
+</section>

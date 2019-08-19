@@ -1,0 +1,10 @@
+<div class="list" cdkDropList (cdkDropListDropped)="drop($event)" cdkDropListOrientation="horizontal">
+  <div class="item" *ngFor="let photo of photos; let i = index" cdkDrag>
+    <div class="number choiser-font">{{i+1}}</div>
+    <div class="photo" >
+      <img 
+        *ngIf="preparationServ.photos[myIndex][i]" 
+        [src]="preparationServ.photos[myIndex][i].photo">
+    </div>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { DuelModule } from './duel/duel.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -31,7 +32,8 @@ import { NotificationModule } from './notification/notification.module';
     ChoiseModule,
     RatingModule,
     EditUserModule,
-    NotificationModule
+    NotificationModule,
+    DuelModule
   ],
 
   providers: [AppService]

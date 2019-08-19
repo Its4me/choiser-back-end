@@ -34,8 +34,10 @@ module.exports.register = async function (req, res) {
     if (candidate) {
       //вывод ошибки
       res.status(401).json({ message: "Пользователь с таким email уже зарегестрирован" })
+      return
     } else if(checkNick){
       res.status(401).json({ message: "Пользователь с таким ником уже зарегестрирован" })
+      return
     } else {
       const salt = bcrypt.genSaltSync(10)
       const hash = bcrypt.hashSync(req.body.password, salt)

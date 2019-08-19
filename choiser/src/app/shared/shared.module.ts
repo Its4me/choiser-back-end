@@ -22,9 +22,14 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ClipboardModule } from 'ngx-clipboard';
 import { MatTabsModule } from '@angular/material/tabs';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
+import { FillPipe } from './pipes/array-fill.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    FillPipe
+  ],
   imports: [
     CommonModule
   ],
@@ -51,7 +56,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatRippleModule,
     MatBadgeModule,
     ClipboardModule,
-    MatTabsModule
+    MatTabsModule,
+    DragDropModule,
+    FillPipe
   ]
 })
 export class SharedModule { }

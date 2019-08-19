@@ -1,3 +1,4 @@
+import { PreparationService } from './../duel/preparation/preparation.service';
 import { AppService } from './../app.service';
 import { AvatarPopUpComponent } from './avatar-pop-up/avatar-pop-up.component';
 import { AuthCoreService } from './../../core/services/authCore.service';
@@ -61,7 +62,8 @@ export class UserComponent implements OnInit, OnDestroy {
     private material: Material,
     private authService: AuthCoreService,
     public dialog: MatDialog,
-    private appServ: AppService
+    private appServ: AppService,
+    private preparationServ: PreparationService
   ) { }
 
   ngOnInit() {
@@ -91,16 +93,7 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
 
-  formulaStar(likes, views): number {
-    const percent = likes * 100 / views
-    switch (true) {
-      case (percent < 20): return 1
-      case (percent < 40): return 2
-      case (percent < 55): return 3
-      case (percent < 70): return 4
-      case (percent >= 70): return 5
-    }
-  }
+  
 
   getUserPage() {
     forkJoin(
@@ -110,7 +103,7 @@ export class UserComponent implements OnInit, OnDestroy {
       .subscribe(([user, photos]) => {
         this.user = user
         this.photos = photos.map(photo => {
-          photo.stars = this.formulaStar(photo.likes, photo.views)
+          photo.stars = this.userServ.formulaStar(photo.likes, photo.views)
           return photo
         })
         
@@ -184,5 +177,9 @@ export class UserComponent implements OnInit, OnDestroy {
   }
   openMenu(){
     this.appServ.toggle()
+  }
+  initDuel(){
+    this.preparationServ.initBattle(this.user)
+    this.router.navigate(['duel', 'preparation', 'new'])
   }
 }

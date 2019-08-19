@@ -38,7 +38,9 @@ body, html{
   margin: 0;
   font-family: 'Roboto', sans-serif;
 }
-
+.choiser-font{
+  font-family: 'Merienda', cursive;
+}
 .input-field.col{
   padding: 0;
 }
@@ -193,7 +195,83 @@ article.notification{
   border-radius: 10px;
 }
 
+//swiper
+.carousel{
+  &-item{
+    height: 100%;
+    width: 20%;
+    position: relative;
+    img{
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+    &:hover .item-bottom-panel{
+      bottom: 0;
+    }
+    &:hover .delete{
+      opacity: 1;
+      visibility: visible;
+    }
+    
+  }
+}
+.carousel-wrapper{
+  width: 100%;
+  height: 250px;
+  max-width: 100%;
+  float: left;
+  position: relative;
+}
+.swiper-wrapper{
+  height: 100%;
+}
 
+.arrow{
+  height: 50px;
+  position: absolute;
+  top: 100px;
+  z-index: 50;
+}
+
+.item-bottom-panel{
+  position: absolute;
+  bottom: -27px;
+  background-color: rgba(0,0,0, 0.8);
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0.5rem 50px;
+  transition: all 0.35s ease-in-out;
+  i{
+    color: white;
+    font-size: 0.8em;
+  }
+}
+.superLike{
+  position: absolute;
+  bottom: 36px;
+  right: 5px;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40.5px;
+  height: 36px;
+  i{
+    font-size: 36px;
+    color: #e6d600;
+    position: absolute;
+    z-index: 5;
+  }
+  span{
+    position: relative;
+    z-index: 6;
+  }
+}
+.fa-coins{
+  color: #cabd00;
+}
 
 @media (max-width: 992px){
   .header-h2{
@@ -203,9 +281,20 @@ article.notification{
   button.menu-btn{
     display: block;
   }
+  .item-bottom-panel{
+    bottom: 0;
+  }
+  
 }
-
+@media (max-width: 768px){
+  .carousel-wrapper{
+    height: 200px;
+  }
+}
 @media (max-width: 586px){
+  .swiper-button{
+    display: none;
+  }
   .header-h2{
     font-size: 1.2rem;
     padding: 10px 0;

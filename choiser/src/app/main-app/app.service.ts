@@ -22,5 +22,8 @@ export class AppService {
   getBigPhoto(): Observable<any>{
     return this.bigPhoto
   }
+  setBigPhoto(any){
+    this.bigPhoto.next(any)
+  }
 
 }

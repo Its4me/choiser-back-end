@@ -35,4 +35,15 @@ export class UserService {
   deleteUser(id: string){
     return this.http.delete(`api/user/${id}`)
   }
+
+  formulaStar(likes, views): number {
+    const percent = likes * 100 / views
+    switch (true) {
+      case (percent < 20): return 1
+      case (percent < 40): return 2
+      case (percent < 55): return 3
+      case (percent < 70): return 4
+      case (percent >= 70): return 5
+    }
+  }
 }
