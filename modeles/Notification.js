@@ -22,7 +22,7 @@ const notificationSchema = new Schema({
   },
   photoSrc: {
     type: String
-  }
+  },
 })
 
 module.exports = mongoose.model('notifications', notificationSchema)

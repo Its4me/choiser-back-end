@@ -40,11 +40,17 @@
       </a>
         <input #input (change)="onPhotosUpload($event)" class="none" type="file" multiple>
       </div>
+
       <div class="no-my-menu"  *ngIf="!itsMe">
-        <a (click)="initDuel()"   mat-flat-button color="primary">
-          <i class="fas fa-clone"></i>
-          <span>Дуэль</span>
-        </a>
+        <button  mat-icon-button [matMenuTriggerFor]="menu">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button (click)="initDuel()" mat-menu-item>
+            <span>Вызвать на дуэль</span>
+          </button>
+        </mat-menu>
+
       </div>
     </div>
     <div [swiper]="config" 
@@ -53,7 +59,7 @@
       >
       <div class="swiper-wrapper">
         <a *ngFor="let photo of photos;let i = index" class="carousel-item swiper-slide">
-          <img class="carousel-item-img" [src]="photo.photo" (click)="open(i)" #slide alt="">
+          <img class="carousel-item-img no-navbar-swipe" [src]="photo.photo" (click)="open(i)" #slide alt="">
           <div class="item-bottom-panel" *ngIf="photo.stars && itsMe">
             <i *ngFor="let star of photo.stars | fill" class="fas fa-star"></i>
             <i *ngFor="let star of photo.stars | fill:true" class="far fa-star"></i>

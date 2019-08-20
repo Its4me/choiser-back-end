@@ -65,7 +65,7 @@ export class MainAppComponent implements OnInit, OnDestroy {
   }
   onSwipeRigth($event){
     const slider: boolean = $event.target.classList.contains('swiper-wrapper')
-    const img: boolean = $event.target.classList.contains('carousel-item-img')
+    const img: boolean = $event.target.classList.contains('no-navbar-swipe')
     const imgBigSlider: boolean = $event.target.classList.contains('pswp__img')
 
     if(!slider && !img && !imgBigSlider && this.screenWidth <= this.mobileWidth){

@@ -14,7 +14,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 export class PreparationComponent implements OnInit, OnDestroy {
 
   isNew: boolean
-
+  coins: number = 100
 
   constructor(
     // private auth: AuthCoreService,
@@ -39,10 +39,12 @@ export class PreparationComponent implements OnInit, OnDestroy {
       })
   }
 
-  ngOnDestroy(){}
+  ngOnDestroy(){
+    this.preparationServ.reset()
+  }
 
   back(){
     this._location.back()
   }
-
+  
 }

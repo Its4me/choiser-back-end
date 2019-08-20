@@ -6,7 +6,9 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-    maxlength: 255
+    maxlength: 255,
+    lowercase: true, 
+    trim: true
   },
   password: {
     type: String,
@@ -85,7 +87,8 @@ const userSchema = new Schema({
   },
   coins: {
     type: Number,
-    default: 500
+    default: 500,
+    min: 0
   },
   notificationCount: {
     type: Number,

@@ -24,7 +24,7 @@ app-choised-photo{
 }
 .vs{
   width: 100%;
-  font-size: 35px;
+  font-size: 2em;
   text-align: center;
   padding: .75em 0;
 }
@@ -32,7 +32,7 @@ app-choised-photo{
   width: 100%;
   display: flex;
   justify-content: center;
-  font-size: 35px;
+  font-size: 2em;
   margin-bottom: .75em;
 }
 .button{
@@ -42,8 +42,21 @@ app-choised-photo{
   justify-content: center;
   margin-bottom: .75em;
 }
+.coins-info{
+  margin: -1em .75em .75em;
+}
+
+@media(max-width: 768px){
+  .battle{
+    font-size: 14px;
+  }
+}
 @media (max-width: 586px){
   .header-h2{
+  
     margin-bottom: 0;
+  }  
+  .battle{
+    font-size: 12px;
   }
 }

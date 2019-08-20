@@ -27,4 +27,9 @@ export class PreparationService {
   removePhoto(photo: Photo){
     this.photos[this.index] = this.photos[this.index].filter(elem => elem._id != photo._id)
   }
+  reset(){
+    this.users = []
+    this.photos = [[]]
+    this.index = undefined
+  }
 }

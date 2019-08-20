@@ -55,13 +55,24 @@ export class SliderComponent implements OnInit, OnDestroy {
   ngOnDestroy(){}
 
   choise(i:number){
+    
     if(this.selected[i]){
       this.preparationServ.removePhoto(this.photos[i])
       this.selected[i] = false
     }else{
+      if(this.findSelectedCount() >= 5){
+        return
+      }
       this.preparationServ.choisePhoto(this.photos[i])
       this.selected[i] = true
     }
-    
+  }
+
+  private findSelectedCount(): number {
+    let count = 0
+    this.selected.forEach((value)=> {
+      count += value? 1 : 0
+    })
+    return count
   }
 }

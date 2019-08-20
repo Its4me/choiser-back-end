@@ -8,9 +8,12 @@
   </div>
   <div class="coins">
     <mat-form-field>
-      <input matInput type="number" placeholder="Ставка" value="100" min="100">
+      <input matInput type="number" placeholder="Ставка" [(ngModel)]="coins">
       <i matSuffix class="fas fa-coins"></i>
     </mat-form-field>
+    <div class="coins-info center">
+      При победе, вы получите {{coins * 1.8| number:'1.0-0'}}
+    </div>
   </div>
   <div class="battle">
     <app-choised-photo [position]="'left'"></app-choised-photo>

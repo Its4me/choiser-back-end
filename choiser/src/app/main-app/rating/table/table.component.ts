@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs';
-import { Component, OnInit, Input, OnDestroy, HostListener, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, HostListener } from '@angular/core';
 import { RatingService } from '../rating.service';
 import { RatingParams, User } from 'src/app/shared/interfaces';
 import { untilDestroyed } from 'ngx-take-until-destroy';
@@ -33,8 +33,7 @@ export class TableComponent implements OnInit, OnDestroy {
   limit: number = STEP
 
   constructor(
-    private ratingServ: RatingService,
-    private changeDetectorRefs: ChangeDetectorRef
+    private ratingServ: RatingService
   ) { }
 
   ngOnInit() {
@@ -46,6 +45,7 @@ export class TableComponent implements OnInit, OnDestroy {
         this.skip = 0
         this.users.data = []
         this.noMoreUsers = false
+        this.waitUsers = false
         this.getUsers(res)
       })
   }
@@ -64,7 +64,7 @@ export class TableComponent implements OnInit, OnDestroy {
     this.ratingServ.getUsers(params)
       .pipe(untilDestroyed(this))
       .subscribe(res => {
-        if(res.length < 1){
+        if(res.length < 1 && this.users.data.length >= 1){
           this.noMoreUsers = true
         }else {
           const data = this.users.data
