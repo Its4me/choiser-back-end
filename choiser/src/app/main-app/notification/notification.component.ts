@@ -23,7 +23,6 @@ export class NotificationComponent implements OnInit, OnDestroy {
   loader: boolean = false
   skip: number = 0
   limit: number = STEP
-  heigthOf5Article = 440
   waitNotifications = false
 
 
@@ -82,7 +81,6 @@ export class NotificationComponent implements OnInit, OnDestroy {
         this.loadMore()
       }
     }
-    
   }
   daleteAll(){
     this.notificationServ.deleteAll()

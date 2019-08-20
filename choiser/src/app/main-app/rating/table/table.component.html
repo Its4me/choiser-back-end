@@ -1,6 +1,6 @@
 <ng-container *ngIf="users">
 
-  <ng-container *ngIf="users.length > 0; else empty">
+  <ng-container *ngIf="users.data.length > 0; else empty">
     <table mat-table [dataSource]="users" class="rating-table">
 
       <ng-container matColumnDef="position">
@@ -39,7 +39,7 @@
   </ng-container>
 
   <ng-template #empty>
-    <p class="center">Пока тут пусто(</p>
+    <p class="center" *ngIf="!waitUsers">Пока тут пусто(</p>
   </ng-template>
   
 
