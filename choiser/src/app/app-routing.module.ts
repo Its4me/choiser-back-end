@@ -20,8 +20,7 @@ const routes: Routes = [
       { path: 'rating', component: RatingComponent, },
       { path: 'user/:id', component: UserComponent, },
       { path: 'edit/user', component: EditUserComponent, },
-      { path: 'notification', component: NotificationComponent, },
-      { path: 'duel/preparation/:id', component: PreparationComponent, }
+      { path: 'notification', component: NotificationComponent, }
     ]
   }, 
   {

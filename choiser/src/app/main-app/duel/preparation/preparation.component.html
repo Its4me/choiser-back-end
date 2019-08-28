@@ -20,9 +20,13 @@
     <div class="center vs choiser-font">VS</div>
 
     <app-choised-photo *ngIf="!isNew; else nickName" [position]="'right'"></app-choised-photo>
-    <div class="nickname" #nickname *ngIf="preparationServ.users[1]">
-      {{preparationServ.users[1].nickname}}
-    </div>
+    <ng-template #nickName>
+      <div class="nickname" *ngIf="preparationServ.users[1]">
+        {{preparationServ.users[1].nickname}}
+      </div>
+    </ng-template>
+    
+    
   </div>
   <div class="button">
     <button mat-flat-button color="primary">Отправить</button>

@@ -32,8 +32,7 @@ import { NotificationModule } from './notification/notification.module';
     ChoiseModule,
     RatingModule,
     EditUserModule,
-    NotificationModule,
-    DuelModule
+    NotificationModule
   ],
 
   providers: [AppService]

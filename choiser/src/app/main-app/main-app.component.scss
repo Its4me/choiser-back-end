@@ -1,7 +1,8 @@
 .layout{
   width: 100%;
-  float: left;
   display: flex;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 main{
   float: left;
@@ -37,4 +38,10 @@ mat-sidenav-content{
   main{
     padding: 0;
   }
+}
+@media (min-width: 1500px){
+  .navbar{
+    box-shadow: 0 2px 3px -1px #000;
+  }
+  
 }
